@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Intellij IDEA 常用功能 | Lorem MoonのStory</title><meta name="keywords" content="工具"><meta name="author" content="Lorem Moon"><meta name="copyright" content="Lorem Moon"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Tab 页在 intellij idea 中，直接使用快捷键 ctrl+e 来找到最近访问过的文件；使用 ctrl+shift+e 来访问最近编辑过的文件。 跳到特定的文件夹在intellij idea 中，可以输入 &#x2F;文件夹名 来跳到特定的文件夹（使用double shift快捷键）。 快速补全行末分号Java 中，每一条语句的末尾都得加上 ; 号，我们可以在行中任意位置使用快捷键 ctrl+s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intellij IDEA 常用功能">
+<meta property="og:url" content="https://hello-github-ui.github.io/posts/32650/index.html">
+<meta property="og:site_name" content="Lorem MoonのStory">
+<meta property="og:description" content="Tab 页在 intellij idea 中，直接使用快捷键 ctrl+e 来找到最近访问过的文件；使用 ctrl+shift+e 来访问最近编辑过的文件。 跳到特定的文件夹在intellij idea 中，可以输入 &#x2F;文件夹名 来跳到特定的文件夹（使用double shift快捷键）。 快速补全行末分号Java 中，每一条语句的末尾都得加上 ; 号，我们可以在行中任意位置使用快捷键 ctrl+s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/60786c748322e6675cb9449e.jpg">
+<meta property="article:published_time" content="2021-04-27T16:07:43.000Z">
+<meta property="article:modified_time" content="2022-10-22T06:47:40.080Z">
+<meta property="article:author" content="Lorem Moon">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/60786c748322e6675cb9449e.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hello-github-ui.github.io/posts/32650/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"D5QZVMNT9K","apiKey":"92de0b03da46fa778c95817524081160","indexName":"hexo-blog","hits":{"per_page":100},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Intellij IDEA 常用功能',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-22 14:47:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.imgdb.cn/item/60786c748322e6675cb9449e.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lorem MoonのStory</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Intellij IDEA 常用功能<a class="post-edit-link" href="https://github.com/hello-github-ui/hexo-blog-source/tree/master/source/_posts/Intellij-IDEA-常用功能.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-04-27T16:07:43.000Z" title="Created 2021-04-28 00:07:43">2021-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-22T06:47:40.080Z" title="Updated 2022-10-22 14:47:40">2022-10-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/code/">code</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>4min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Intellij IDEA 常用功能"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Tab-页"><a href="#Tab-页" class="headerlink" title="Tab 页"></a>Tab 页</h2><p>在 intellij idea 中，直接使用快捷键 <code>ctrl+e</code> 来找到最近访问过的文件；<br>使用 <code>ctrl+shift+e</code> 来访问最近编辑过的文件。</p>
+<h2 id="跳到特定的文件夹"><a href="#跳到特定的文件夹" class="headerlink" title="跳到特定的文件夹"></a>跳到特定的文件夹</h2><p>在intellij idea 中，可以输入 <code>/文件夹名</code> 来跳到特定的文件夹（使用double shift快捷键）。</p>
+<h2 id="快速补全行末分号"><a href="#快速补全行末分号" class="headerlink" title="快速补全行末分号"></a>快速补全行末分号</h2><p>Java 中，每一条语句的末尾都得加上 <code>;</code> 号，我们可以在行中任意位置使用快捷键 <code>ctrl+shift+enter</code> 来快速补全分号。</p>
+<h2 id="Rest-Client"><a href="#Rest-Client" class="headerlink" title="Rest Client"></a>Rest Client</h2><p>intellij idea 中内置了一个 rest client，可以通过 <code>ctrl+shift+a</code> 调出面板，然后搜索 rest client 来找到，打开以后可以看到一个简单的 rest client。<br>之所以说它比较简单是因为觉得还是 postman 更加强大，相比之下， rest client 则要显得逊色得多。</p>
+<h2 id="粘贴板历史选择"><a href="#粘贴板历史选择" class="headerlink" title="粘贴板历史选择"></a>粘贴板历史选择</h2><p>直接通过快捷键 <code>ctrl+shift+v</code> 来访问历史 粘贴板。</p>
+<h2 id="Language-Injection"><a href="#Language-Injection" class="headerlink" title="Language Injection"></a>Language Injection</h2><p>大家都知道在 Java 的 String 中编辑有 JSON 的话有多麻烦，各种转义真是让人疯狂，在 Intellij IDEA 中，我们可以直接使用 Intellij IDEA 的 Language Injection 的功能（<code>Alt + Enter</code>）将一个字符串标记为 JSON，就可以非常方便地编写 JSON 了，再也不用担心转义的问题了。</p>
+<h2 id="Smart-Step-Into"><a href="#Smart-Step-Into" class="headerlink" title="Smart Step Into"></a>Smart Step Into</h2><p>在 Debug 的时候，如果一行代码中有多行语句，我们又需要进入其中的一个方法调用的话，经常做的方法是点开源代码，然后打上断点，或者直接右键 Run to Line，而不能使用快捷键快速将 Debug 的当前行进入到想要去的方法上，Intellij IDEA 提供了 Smart Step Into 的能力，只要使用 <code>Shift + F7</code>，就可以选择到底要 Debug 进入哪一个方法。</p>
+<h2 id="多行编辑"><a href="#多行编辑" class="headerlink" title="多行编辑"></a>多行编辑</h2><p>以前要做多行编辑，总是现在 Sublime 里面先做好，然后再拷贝回到 IDEA 里面，现在知道了 IDEA 本身就自带这个功能，快捷键是 <code>alt+Shift+鼠标</code>，直接来看一个 gif 动画看来这个功能吧：</p>
+<p><img src="https://img.imgdb.cn/item/608837c2d1a9ae528f2ffa78.gif" alt="select_multi_line.gif"></p>
+<h2 id="快速打印输出"><a href="#快速打印输出" class="headerlink" title="快速打印输出"></a>快速打印输出</h2><p>除了用 <code>sout</code> 开头快速生成，还能在后面快速生成。</p>
+<p><img src="https://img.imgdb.cn/item/608837c2d1a9ae528f2ffaae.gif" alt="sout.gif"></p>
+<h2 id="快速定义局部变量"><a href="#快速定义局部变量" class="headerlink" title="快速定义局部变量"></a>快速定义局部变量</h2><p>在字符串或者数字……后面输入 <code>.var</code>，回车，IDEA会自动推断并快速定义一个局部变量，不过它是 final 类型的</p>
+<p><img src="https://img.imgdb.cn/item/608837ced1a9ae528f30a2c1.gif" alt="var.gif"></p>
+<h2 id="快速定义成员变量"><a href="#快速定义成员变量" class="headerlink" title="快速定义成员变量"></a>快速定义成员变量</h2><p>在值后面输入<code>.field</code>，可以快速定义一个成员变量，如果当前方法是静态的，那生成的变量也是静态的。</p>
+<p><img src="https://img.imgdb.cn/item/608837c2d1a9ae528f2ffad1.gif" alt="static-var.gif"></p>
+<h2 id="快速格式化字符串"><a href="#快速格式化字符串" class="headerlink" title="快速格式化字符串"></a>快速格式化字符串</h2><p>在字符串后面输入<code>.format</code>，回车，IDEA会自动生成 String.format…语句，牛逼吧！</p>
+<p><img src="https://img.imgdb.cn/item/60883761d1a9ae528f2ab751.gif" alt="format.gif"></p>
+<h2 id="快速判断（非）空"><a href="#快速判断（非）空" class="headerlink" title="快速判断（非）空"></a>快速判断（非）空</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (xx != <span class="keyword">null</span>)</span><br><span class="line"><span class="keyword">if</span> (xx == <span class="keyword">null</span>)</span><br></pre></td></tr></table></figure>
+<p>像上面这种判断空/非空的情况非常多吧，其实可以快速生成 if 判断语句块，非空：<code>.notnull</code> 或者 <code>.nn</code>，空：<code>.null</code>。</p>
+<p><img src="https://img.imgdb.cn/item/60883761d1a9ae528f2ab7f9.gif" alt="null.gif"></p>
+<h2 id="快速取反判断"><a href="#快速取反判断" class="headerlink" title="快速取反判断"></a>快速取反判断</h2><p>输入 <code>.not</code> 可以让布尔值快速取反，再输入 <code>.if</code> 可快速生成 if 判断语句块。</p>
+<p><img src="https://img.imgdb.cn/item/60883761d1a9ae528f2ab782.gif" alt="if.gif"></p>
+<h2 id="快速遍历集合"><a href="#快速遍历集合" class="headerlink" title="快速遍历集合"></a>快速遍历集合</h2><p>下面是几种 for 循环语句的快速生成演示，<code>.for</code>, <code>.fori</code>, <code>.forr</code> 都可以满足你的要求</p>
+<p><img src="https://img.imgdb.cn/item/60883761d1a9ae528f2ab706.gif" alt="for.gif"></p>
+<h2 id="快速返回值"><a href="#快速返回值" class="headerlink" title="快速返回值"></a>快速返回值</h2><p>在值后面输入 <code>.return</code>，可以让当前值快速返回。</p>
+<p><img src="https://img.imgdb.cn/item/608837c2d1a9ae528f2ffa58.gif" alt="return.gif"></p>
+<h2 id="快速生成同步锁"><a href="#快速生成同步锁" class="headerlink" title="快速生成同步锁"></a>快速生成同步锁</h2><p>在对象后面输入 <code>.synchronized</code>，可以快速生成该对象的同步锁语句块。</p>
+<p><img src="https://img.imgdb.cn/item/608837c2d1a9ae528f2ffb0d.gif" alt="synchronized.gif"></p>
+<h2 id="快速生成JDK8语句"><a href="#快速生成JDK8语句" class="headerlink" title="快速生成JDK8语句"></a>快速生成JDK8语句</h2><p>下面演示的是快速生成 Lambda 以及 Optional 语句。</p>
+<p><img src="https://img.imgdb.cn/item/60883761d1a9ae528f2ab7b9.gif" alt="Lambda .gif"></p>
+<h2 id="常用快捷键列表"><a href="#常用快捷键列表" class="headerlink" title="常用快捷键列表"></a>常用快捷键列表</h2><p>Alt+回车 导入包,自动修正</p>
+<p><code>Ctrl+N</code>  查找类</p>
+<p><code>Ctrl+Shift+N</code> 查找文件</p>
+<p><code>Ctrl+Alt+L</code>  格式化代码</p>
+<p><code>Ctrl+Alt+O</code> 优化导入的类和包</p>
+<p>Alt+Insert 生成代码(如get,set方法,构造函数等)</p>
+<p><code>Ctrl+E</code>或者Alt+Shift+C  最近更改的代码</p>
+<p><code>Ctrl+R</code> 替换文本</p>
+<p>Ctrl+F 查找文本</p>
+<p><code>Ctrl+Shift+Space</code> 自动补全代码</p>
+<p><code>Ctrl+空格</code> 代码提示</p>
+<p>Ctrl+Alt+Space 类名或接口名提示</p>
+<p><code>Ctrl+P</code> 方法参数提示</p>
+<p>Ctrl+Shift+Alt+N 查找类中的方法或变量</p>
+<p><code>Alt+Shift+C</code> 对比最近修改的代码</p>
+<p><code>Ctrl+D</code> 复制行</p>
+<p><code>Ctrl+X</code> 删除行(我习惯于修改成 ctrl + y)</p>
+<p>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）</p>
+<p><code>Ctrl+J</code>  自动代码</p>
+<p><code>Ctrl+H</code> 显示类结构图</p>
+<p><code>Ctrl+Q</code> 显示注释文档</p>
+<p>Alt+F1 查找代码所在位置</p>
+<p>Alt+1 快速打开或隐藏工程面板</p>
+<p><code>Ctrl+Alt</code>+ left/right 返回至上次浏览的位置</p>
+<p>Alt+ left/right 切换代码视图</p>
+<p>Alt+ Up/Down 在方法间快速移动定位</p>
+<p>Ctrl+Shift+Up/Down 代码向上/下移动</p>
+<p><code>F2</code> 或Shift+F2 高亮错误或警告快速定位</p>
+<p><code>Ctrl+W</code> 选中代码，连续按会有其他效果</p>
+<p>Ctrl+B 快速打开光标处的类或方法</p>
+<p><code>Ctrl+Alt+B</code> 快速打开实现类</p>
+<p><strong>本文参考于<a target="_blank" rel="noopener" href="https://blog.khotyn.com/blog/2014/10/19/intellij-idea-feature/">Intellij IDEA 的一些使用技巧</a>和<a target="_blank" rel="noopener" href="https://blog.csdn.net/ifeves/article/details/102607829">Intellij IDEA 智能补全的 10 个姿势</a>，在此表示感谢</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lorem Moon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hello-github-ui.github.io/posts/32650/">https://hello-github-ui.github.io/posts/32650/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div><div class="post_share"><div class="social-share" data-image="https://img.imgdb.cn/item/60786c748322e6675cb9449e.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/54013/" title="更好地使用搜索引擎"><img class="cover" src="https://img.imgdb.cn/item/604b88715aedab222cebf613.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-18</div><div class="title">更好地使用搜索引擎</div></div></a></div><div><a href="/posts/30738/" title="用爱发电的Google镜像"><img class="cover" src="https://pic.imgdb.cn/item/61952f5b2ab3f51d91a1e7d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-18</div><div class="title">用爱发电的Google镜像</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lorem Moon</div><div class="author-info__description">即已成过往，便随它而去吧。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hello-github-ui" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:util.you.come@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tab-%E9%A1%B5"><span class="toc-number">1.</span> <span class="toc-text">Tab 页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E5%88%B0%E7%89%B9%E5%AE%9A%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.</span> <span class="toc-text">跳到特定的文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E8%A1%A5%E5%85%A8%E8%A1%8C%E6%9C%AB%E5%88%86%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">快速补全行末分号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rest-Client"><span class="toc-number">4.</span> <span class="toc-text">Rest Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E8%B4%B4%E6%9D%BF%E5%8E%86%E5%8F%B2%E9%80%89%E6%8B%A9"><span class="toc-number">5.</span> <span class="toc-text">粘贴板历史选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Language-Injection"><span class="toc-number">6.</span> <span class="toc-text">Language Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Smart-Step-Into"><span class="toc-number">7.</span> <span class="toc-text">Smart Step Into</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E7%BC%96%E8%BE%91"><span class="toc-number">8.</span> <span class="toc-text">多行编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="toc-number">9.</span> <span class="toc-text">快速打印输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%B9%89%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">10.</span> <span class="toc-text">快速定义局部变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%B9%89%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-number">11.</span> <span class="toc-text">快速定义成员变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">12.</span> <span class="toc-text">快速格式化字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%88%A4%E6%96%AD%EF%BC%88%E9%9D%9E%EF%BC%89%E7%A9%BA"><span class="toc-number">13.</span> <span class="toc-text">快速判断（非）空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%8F%96%E5%8F%8D%E5%88%A4%E6%96%AD"><span class="toc-number">14.</span> <span class="toc-text">快速取反判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88"><span class="toc-number">15.</span> <span class="toc-text">快速遍历集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">16.</span> <span class="toc-text">快速返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E5%90%8C%E6%AD%A5%E9%94%81"><span class="toc-number">17.</span> <span class="toc-text">快速生成同步锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90JDK8%E8%AF%AD%E5%8F%A5"><span class="toc-number">18.</span> <span class="toc-text">快速生成JDK8语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%88%97%E8%A1%A8"><span class="toc-number">19.</span> <span class="toc-text">常用快捷键列表</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4723/" title="Redis主从搭建"><img src="https://pic.imgdb.cn/item/61210fda4907e2d39c439d0c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis主从搭建"/></a><div class="content"><a class="title" href="/posts/4723/" title="Redis主从搭建">Redis主从搭建</a><time datetime="2022-10-22T06:47:40.080Z" title="Created 2022-10-22 14:47:40">2022-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/43818/" title="Win10开启上帝模式"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Win10开启上帝模式"/></a><div class="content"><a class="title" href="/posts/43818/" title="Win10开启上帝模式">Win10开启上帝模式</a><time datetime="2022-03-08T12:24:42.000Z" title="Created 2022-03-08 20:24:42">2022-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55966/" title="Ubuntu修改静态IP"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu修改静态IP"/></a><div class="content"><a class="title" href="/posts/55966/" title="Ubuntu修改静态IP">Ubuntu修改静态IP</a><time datetime="2022-03-04T16:11:25.000Z" title="Created 2022-03-05 00:11:25">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/42154/" title="Java封装同步锁"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java封装同步锁"/></a><div class="content"><a class="title" href="/posts/42154/" title="Java封装同步锁">Java封装同步锁</a><time datetime="2022-03-02T12:50:01.000Z" title="Created 2022-03-02 20:50:01">2022-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1553/" title="初识大数据(一)"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初识大数据(一)"/></a><div class="content"><a class="title" href="/posts/1553/" title="初识大数据(一)">初识大数据(一)</a><time datetime="2022-03-01T07:53:43.000Z" title="Created 2022-03-01 15:53:43">2022-03-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.imgdb.cn/item/60786c748322e6675cb9449e.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By Lorem Moon</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://hello-blogger-ui.blogspot.com/">google blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'mFM6i90bN6KqyTH6tmC3q7dz-gzGzoHsz',
+      appKey: 'T2tsKoiKjMaB0wgtIAgSz6Ul',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SpringBoot整合Redis | Lorem MoonのStory</title><meta name="keywords" content="Redis"><meta name="author" content="Lorem Moon"><meta name="copyright" content="Lorem Moon"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Redis 简介基于内存进行存储，支持key-value的存储形式，底层是用C语言编写的 基于key-value形式的数据字典，结构非常简单，没有数据表的概念，直接用键值对的形式完成数据的管理，Redis支持5种数据类型：  字符串 列表 集合 有序集合 哈希  安装 Redis下载https:&#x2F;&#x2F;redis.io&#x2F;download 解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹 b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot整合Redis">
+<meta property="og:url" content="https://hello-github-ui.github.io/posts/13813/index.html">
+<meta property="og:site_name" content="Lorem MoonのStory">
+<meta property="og:description" content="Redis 简介基于内存进行存储，支持key-value的存储形式，底层是用C语言编写的 基于key-value形式的数据字典，结构非常简单，没有数据表的概念，直接用键值对的形式完成数据的管理，Redis支持5种数据类型：  字符串 列表 集合 有序集合 哈希  安装 Redis下载https:&#x2F;&#x2F;redis.io&#x2F;download 解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹 b">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/604b93e95aedab222cf35159.jpg">
+<meta property="article:published_time" content="2020-07-17T14:03:30.000Z">
+<meta property="article:modified_time" content="2022-10-22T06:47:40.080Z">
+<meta property="article:author" content="Lorem Moon">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/604b93e95aedab222cf35159.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hello-github-ui.github.io/posts/13813/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"D5QZVMNT9K","apiKey":"92de0b03da46fa778c95817524081160","indexName":"hexo-blog","hits":{"per_page":100},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBoot整合Redis',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-22 14:47:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.imgdb.cn/item/604b93e95aedab222cf35159.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lorem MoonのStory</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SpringBoot整合Redis<a class="post-edit-link" href="https://github.com/hello-github-ui/hexo-blog-source/tree/master/source/_posts/SpringBoot整合Redis.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-07-17T14:03:30.000Z" title="Created 2020-07-17 22:03:30">2020-07-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-22T06:47:40.080Z" title="Updated 2022-10-22 14:47:40">2022-10-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/code/">code</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>7min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SpringBoot整合Redis"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><p>基于内存进行存储，支持key-value的存储形式，底层是用C语言编写的</p>
+<p>基于key-value形式的数据字典，结构非常简单，没有数据表的概念，直接用键值对的形式完成数据的管理，Redis支持5种数据类型：</p>
+<ul>
+<li>字符串</li>
+<li>列表</li>
+<li>集合</li>
+<li>有序集合</li>
+<li>哈希</li>
+</ul>
+<h2 id="安装-Redis"><a href="#安装-Redis" class="headerlink" title="安装 Redis"></a>安装 Redis</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a></p>
+<h3 id="解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹"><a href="#解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹" class="headerlink" title="解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹"></a>解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹</h3><ul>
+<li>bin：放置启动 redis 的可执行文件</li>
+<li>db：放置数据文件</li>
+<li>etc：放置配置文件，设置redis服务的端口、日志文件位置、数据文件位置等</li>
+</ul>
+<p>同时将解压后（或者安装后的所有文件）都拷贝到创建的这个文件夹下面</p>
+<p><img src="https://img.imgdb.cn/item/604b874d5aedab222ceb5789.png"></p>
+<h3 id="启动redis服务"><a href="#启动redis服务" class="headerlink" title="启动redis服务"></a>启动redis服务</h3><p>打开终端，进入到上一步新建的目录下面</p>
+<p>先启动server：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./redis-server.exe ./redis.windows.conf</span><br></pre></td></tr></table></figure>
+
+<p>当然你也可以将server 注册为一个服务，但是我不建议这样做</p>
+<p>再启动 client：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./redis-cli.exe</span><br></pre></td></tr></table></figure>
+
+<p>对数据进行操作：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> key value</span><br><span class="line">get key</span><br></pre></td></tr></table></figure>
+
+<p>退出client：shutdown</p>
+<h2 id="Spring-Boot整合Redis"><a href="#Spring-Boot整合Redis" class="headerlink" title="Spring Boot整合Redis"></a>Spring Boot整合Redis</h2><p>spring data Redis 操作 redis</p>
+<ul>
+<li>1、新建 maven 工程，添加如下依赖：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springbootredis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--    切记先引入springboot工程的  parent--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--        web依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--        springboot 整合redis，使用的是spring data 来操作redis --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--        连接池是 apache 提供的 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--        lombok 简化代码，主要是简化entity 与 数据库的映射代码--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2、创建实体类，必须实现序列化接口，否则无法存入redis缓存数据库</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> latin-xiao-mao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/17 19:26</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 因为要存入 redis 中，故必须需要实现 Serializable 接口</span></span><br><span class="line"><span class="comment"> * 因为是给内存中存，所以必须完成序列化操作</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Student</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span> <span class="comment">// 使用lombok 简化代码（比如getter/setter）</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Double score;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Date birthday;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>3、创建控制器</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.entity.Student;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.RedisTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PostMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> latin-xiao-mao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/17 19:43</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> StudentHandler</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//redis为我们提供了一个操作data的操作对象</span></span><br><span class="line">	<span class="meta">@Autowired</span> <span class="comment">// 启动时会自动为我们创建一个实例对象，只需要注入即可</span></span><br><span class="line">	<span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 往redis中存入数据对象</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> student</span></span><br><span class="line"><span class="comment">	 * 这里为什么要写 <span class="doctag">@RequestBody</span>呢，因为我们要将客户端传过来的 JSON对象 转换为Java实体类对象</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@PostMapping(&quot;/set&quot;)</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="meta">@RequestBody</span> Student student)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 然后我们直接通过 redisTemplate 来操作数据，但是必须先调用 opsForValue()方法（此方法将key，value直接封装成一个对象来操作）</span></span><br><span class="line">		redisTemplate.opsForValue().set(<span class="string">&quot;student&quot;</span>, student);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@GetMapping(&quot;/get/&#123;key&#125;&quot;)</span> <span class="comment">// 表明 /get/ 后面的是一个 变量</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Student <span class="title">get</span><span class="params">(<span class="meta">@PathVariable(&quot;key&quot;)</span> String key)</span></span>&#123; <span class="comment">// pathvariable 通过变量名称key来获取实际的值</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> (Student) redisTemplate.opsForValue().get(key);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>4、创建配置文件application.yml</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">redis:</span></span><br><span class="line">        <span class="attr">database:</span> <span class="number">0</span> <span class="comment"># 0表示统一的数据库，一般不用修改</span></span><br><span class="line">        <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">        <span class="attr">port:</span> <span class="number">6379</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>5、创建启动类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> latin-xiao-mao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/17 19:57</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Application</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 启动</span></span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redis-如何存储5种数据类型"><a href="#Redis-如何存储5种数据类型" class="headerlink" title="Redis 如何存储5种数据类型"></a>Redis 如何存储5种数据类型</h3><ul>
+<li>字符串</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;key&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">stringTest</span><span class="params">(<span class="meta">@PathVariable(&quot;key&quot;)</span> String key)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	redisTemplate.opsForValue().set(key, <span class="string">&quot;hello world!!!&quot;</span>);</span><br><span class="line">	String result = (String) redisTemplate.opsForValue().get(key);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>列表</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 列表的存取，redis列表实际相当于java 中的list</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/list&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Object&gt; <span class="title">listTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">// 存</span></span><br><span class="line">	ListOperations&lt;String, Object&gt; listOperations = redisTemplate.opsForList(); <span class="comment">// List 数据类型就用 opsForList</span></span><br><span class="line">	listOperations.leftPush(<span class="string">&quot;list&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	listOperations.leftPush(<span class="string">&quot;list&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">	listOperations.leftPush(<span class="string">&quot;list&quot;</span>, <span class="number">123</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 取</span></span><br><span class="line">	List&lt;Object&gt; list = listOperations.range(<span class="string">&quot;list&quot;</span>, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.imgdb.cn/item/604b874d5aedab222ceb578c.png"></p>
+<ul>
+<li>集合</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * redis中的集合 实际相当于Java中的 set，无序不重复</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/set&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;Object&gt; <span class="title">setTest</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// setOperations key一般是 string类型，value取决于你实际的需求</span></span><br><span class="line">	SetOperations&lt;String, Object&gt; setOperations = redisTemplate.opsForSet();</span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="string">&quot;hello&quot;</span>); <span class="comment">// 测试是否不可重复</span></span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="number">0</span>);</span><br><span class="line">	setOperations.add(<span class="string">&quot;set&quot;</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 取</span></span><br><span class="line">	Set&lt;Object&gt; set = setOperations.members(<span class="string">&quot;set&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> set;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.imgdb.cn/item/604b874d5aedab222ceb578e.png"></p>
+<ul>
+<li>有序集合</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 有序集合 zset</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/zset&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">zsetTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ZSetOperations&lt;String, String&gt; zSet = redisTemplate.opsForZSet();</span><br><span class="line">	zSet.add(<span class="string">&quot;zset&quot;</span>, <span class="string">&quot;hello&quot;</span>, <span class="number">1</span>); <span class="comment">// 第三个参数是，存储的位置，可以通过这个控制它的顺序</span></span><br><span class="line">	zSet.add(<span class="string">&quot;zset&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="number">2</span>);</span><br><span class="line">	zSet.add(<span class="string">&quot;zset&quot;</span>, <span class="string">&quot;java&quot;</span>, <span class="number">3</span>);</span><br><span class="line">	Set&lt;String&gt; set = zSet.range(<span class="string">&quot;zset&quot;</span>, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">return</span> set;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.imgdb.cn/item/604b874d5aedab222ceb5791.png"></p>
+<ul>
+<li>哈希</li>
+</ul>
+<p>传统的HashMap是由key，value组成的，格式为：</p>
+<p>HashMap&lt;key, value&gt;</p>
+<p>而redis中的 哈希是下面格式的，它多了一个参数key：</p>
+<p>HashOperations&lt;key, hashkey, value&gt;</p>
+<p>key：每一组数据的id</p>
+<p>hashkey和value是一组完整的 HashMap数据，通过key来区分不同的HashMap</p>
+<p><img src="https://img.imgdb.cn/item/604b874d5aedab222ceb579b.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 哈希，需要三个参数：key,hashKey,value</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/hash&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">hashTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">	HashOperations&lt;String, String, String&gt; hashOperations = redisTemplate.opsForHash();</span><br><span class="line">	<span class="comment">// 第一个key，取出一组 hashMap，第二个key，取出value</span></span><br><span class="line">	hashOperations.put(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;hashKey&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	String str = hashOperations.get(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;hashKey&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.imgdb.cn/item/604b878c5aedab222ceb7daa.png"></p>
+<p><img src="https://img.imgdb.cn/item/604b88385aedab222cebd92b.jpg"><br><img src="https://img.imgdb.cn/item/604b88385aedab222cebd92d.jpg"><br><img src="https://img.imgdb.cn/item/604b88385aedab222cebd931.jpg"><br><img src="https://img.imgdb.cn/item/604b88385aedab222cebd937.jpg"><br><img src="https://img.imgdb.cn/item/604b88385aedab222cebd93a.jpg"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lorem Moon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hello-github-ui.github.io/posts/13813/">https://hello-github-ui.github.io/posts/13813/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Redis/">Redis</a></div><div class="post_share"><div class="social-share" data-image="https://img.imgdb.cn/item/604b93e95aedab222cf35159.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/22086/" title="Centos7安装Redis"><img class="cover" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-11</div><div class="title">Centos7安装Redis</div></div></a></div><div><a href="/posts/22629/" title="Redis主从哨兵配置"><img class="cover" src="https://pic.imgdb.cn/item/61210fda4907e2d39c439d0c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-02</div><div class="title">Redis主从哨兵配置</div></div></a></div><div><a href="/posts/4723/" title="Redis主从搭建"><img class="cover" src="https://pic.imgdb.cn/item/61210fda4907e2d39c439d0c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-22</div><div class="title">Redis主从搭建</div></div></a></div><div><a href="/posts/9878/" title="Ubuntu 安装 Redis"><img class="cover" src="https://pic.imgdb.cn/item/612110b04907e2d39c458a3a.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-22</div><div class="title">Ubuntu 安装 Redis</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lorem Moon</div><div class="author-info__description">即已成过往，便随它而去吧。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hello-github-ui" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:util.you.come@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Redis 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Redis"><span class="toc-number">2.</span> <span class="toc-text">安装 Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%EF%BC%8C%E5%B9%B6%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%A1%AC%E7%9B%98%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%9C%A8%E5%85%B6%E4%B8%AD%E5%88%9B%E5%BB%BA3%E4%B8%AA%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.2.</span> <span class="toc-text">解压，并在本地硬盘任意位置创建文件夹，在其中创建3个子文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8redis%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.3.</span> <span class="toc-text">启动redis服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot%E6%95%B4%E5%90%88Redis"><span class="toc-number">3.</span> <span class="toc-text">Spring Boot整合Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A85%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">Redis 如何存储5种数据类型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4723/" title="Redis主从搭建"><img src="https://pic.imgdb.cn/item/61210fda4907e2d39c439d0c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis主从搭建"/></a><div class="content"><a class="title" href="/posts/4723/" title="Redis主从搭建">Redis主从搭建</a><time datetime="2022-10-22T06:47:40.080Z" title="Created 2022-10-22 14:47:40">2022-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/43818/" title="Win10开启上帝模式"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Win10开启上帝模式"/></a><div class="content"><a class="title" href="/posts/43818/" title="Win10开启上帝模式">Win10开启上帝模式</a><time datetime="2022-03-08T12:24:42.000Z" title="Created 2022-03-08 20:24:42">2022-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55966/" title="Ubuntu修改静态IP"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu修改静态IP"/></a><div class="content"><a class="title" href="/posts/55966/" title="Ubuntu修改静态IP">Ubuntu修改静态IP</a><time datetime="2022-03-04T16:11:25.000Z" title="Created 2022-03-05 00:11:25">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/42154/" title="Java封装同步锁"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java封装同步锁"/></a><div class="content"><a class="title" href="/posts/42154/" title="Java封装同步锁">Java封装同步锁</a><time datetime="2022-03-02T12:50:01.000Z" title="Created 2022-03-02 20:50:01">2022-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1553/" title="初识大数据(一)"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初识大数据(一)"/></a><div class="content"><a class="title" href="/posts/1553/" title="初识大数据(一)">初识大数据(一)</a><time datetime="2022-03-01T07:53:43.000Z" title="Created 2022-03-01 15:53:43">2022-03-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.imgdb.cn/item/604b93e95aedab222cf35159.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By Lorem Moon</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://hello-blogger-ui.blogspot.com/">google blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'mFM6i90bN6KqyTH6tmC3q7dz-gzGzoHsz',
+      appKey: 'T2tsKoiKjMaB0wgtIAgSz6Ul',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>面试专题一 | Lorem MoonのStory</title><meta name="keywords" content="面试"><meta name="author" content="Lorem Moon"><meta name="copyright" content="Lorem Moon"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java并发篇相关演示代码地址：guyuexuan039&#x2F;interview: 面试知识点汇总 (github.com) 一、Java如何开启线程？怎么保证线程安全？ 首先说一下线程和进程的区别：进程是操作系统进行资源分配的最小单元；线程是操作系统进行任务分配的最小单元。线程隶属于进程。 如何开启线程？     1.继承 Thread类，重写run方法。     2.实现Runnable接口，实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试专题一">
+<meta property="og:url" content="https://hello-github-ui.github.io/posts/41684/index.html">
+<meta property="og:site_name" content="Lorem MoonのStory">
+<meta property="og:description" content="Java并发篇相关演示代码地址：guyuexuan039&#x2F;interview: 面试知识点汇总 (github.com) 一、Java如何开启线程？怎么保证线程安全？ 首先说一下线程和进程的区别：进程是操作系统进行资源分配的最小单元；线程是操作系统进行任务分配的最小单元。线程隶属于进程。 如何开启线程？     1.继承 Thread类，重写run方法。     2.实现Runnable接口，实现">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg">
+<meta property="article:published_time" content="2021-06-23T07:10:20.000Z">
+<meta property="article:modified_time" content="2022-10-22T06:47:40.084Z">
+<meta property="article:author" content="Lorem Moon">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hello-github-ui.github.io/posts/41684/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"D5QZVMNT9K","apiKey":"92de0b03da46fa778c95817524081160","indexName":"hexo-blog","hits":{"per_page":100},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '面试专题一',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-22 14:47:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lorem MoonのStory</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/musics/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">面试专题一<a class="post-edit-link" href="https://github.com/hello-github-ui/hexo-blog-source/tree/master/source/_posts/面试专题一.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-23T07:10:20.000Z" title="Created 2021-06-23 15:10:20">2021-06-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-22T06:47:40.084Z" title="Updated 2022-10-22 14:47:40">2022-10-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/code/">code</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/code/%E8%AE%B0%E4%BA%8B%E6%9C%AC/">记事本</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>12min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="面试专题一"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Java并发篇"><a href="#Java并发篇" class="headerlink" title="Java并发篇"></a>Java并发篇</h2><p>相关演示代码地址：<a target="_blank" rel="noopener" href="https://github.com/guyuexuan039/interview">guyuexuan039/interview: 面试知识点汇总 (github.com)</a></p>
+<h3 id="一、Java如何开启线程？怎么保证线程安全？"><a href="#一、Java如何开启线程？怎么保证线程安全？" class="headerlink" title="一、Java如何开启线程？怎么保证线程安全？"></a>一、Java如何开启线程？怎么保证线程安全？</h3><details>
+首先说一下线程和进程的区别：进程是操作系统进行资源分配的最小单元；线程是操作系统进行任务分配的最小单元。线程隶属于进程。
+如何开启线程？
+    1.继承 Thread类，重写run方法。
+    2.实现Runnable接口，实现run方法。
+    延伸到start方法和run方法的区别，调用start方法开启一个线程，而在start方法内部呢会调用run方法去实现一个线程的逻辑。而如果是我们主观地直接调用run方法，那就是一个普通的方法调用，并不会开启线程。
+    3.实现Callable接口，实现 call 方法。传统的Runnable和Thread的run方法是没有返回值的，如果你想返回一下线程的执行结果，就需要通过 Callable接口来实现。通过 FutureTask创建一个线程，获取到线程执行的返回值。
+    4.通过线程池来开启线程（不熟悉线程池的话就不要提这种方式）
+怎么保证线程安全？
+    什么是线程安全：多个资源对同一个线程进行操作就会出现线程安全的问题。
+    加锁：
+    1. JVM提供的锁，也就是Synchronized关键字
+    2. JDK提供的各种锁 Lock
+    注意：既然你回答到了上面的锁，那面试官就会顺其自然地问你你了解哪些锁？所以，自己需要补充这块知识。
+    锁分类：公平锁和非公平锁
+    公平锁：是指多个线程按照申请锁的顺序来获取锁
+    非公平锁：是指多个线程获取的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁。
+    ReentrantLock：可以指定构造方法的boolean类型来指定是公平锁还是非公平锁，默认是非公平锁
+    synchronized：是一种非公平锁。
+    可重入锁（又名递归锁）：指的是同一线程外层方法获得锁之后，内层递归方法仍然能够获得该锁的代码
+    示例如下：
+    <code>
+        class MyClass &#123;
+            ​ public synchronized void method1() &#123;
+                ​ method2();
+            ​ &#125;
+            ​ public synchronized void method2() &#123;
+            ​ &#125;
+        &#125;
+    </code>
+    method1和method2都是synchronized修饰的方法，在method1里面调用method2的时候，不需要重新申请锁，可以直接调用就行了（其实可以反过来想一想，如果synchronized不具有重入性，当我调用了method1的时候，得申请锁，申请好了之后那么method1就拥有了这个锁，那么调用method2的时候，又要重新申请锁，而锁在method1的手上，这时候又要重新申请锁，显然是不可能得到的，这不科学。所以，synchronize和lock都是具有可重入性的）
+    具体锁的内容可以参考：https://zhuanlan.zhihu.com/p/85511613
+</details>
+
+<h3 id="二、Volatile和Synchronized有什么区别？Volatile能不能保证线程安全？DCL（Double-Check-Lock）单例为什么要加-Volatile？"><a href="#二、Volatile和Synchronized有什么区别？Volatile能不能保证线程安全？DCL（Double-Check-Lock）单例为什么要加-Volatile？" class="headerlink" title="二、Volatile和Synchronized有什么区别？Volatile能不能保证线程安全？DCL（Double Check Lock）单例为什么要加 Volatile？"></a>二、Volatile和Synchronized有什么区别？Volatile能不能保证线程安全？DCL（Double Check Lock）单例为什么要加 Volatile？</h3><details>
+    1. Synchronized关键字，用来加锁。Volatile只是保持变量的线程可见性。通常适用于一个线程写，多个线程读的场景。
+    2. Volatile不能保证线程安全。Volatile关键字只能保证线程可见性，不能保证原子性。
+    3. Volatile防止指令重排。在DCL中，防止高并发情况下，指令重排造成的线程安全问题。
+</details>
+
+<h3 id="三、Java线程锁机制是怎样的？偏向锁、轻量级锁、重量级锁有什么区别？锁机制是如何升级的？"><a href="#三、Java线程锁机制是怎样的？偏向锁、轻量级锁、重量级锁有什么区别？锁机制是如何升级的？" class="headerlink" title="三、Java线程锁机制是怎样的？偏向锁、轻量级锁、重量级锁有什么区别？锁机制是如何升级的？"></a>三、Java线程锁机制是怎样的？偏向锁、轻量级锁、重量级锁有什么区别？锁机制是如何升级的？</h3><details>
+    1. Java的锁就是在对象的MarkWord中记录一个锁状态。无锁、偏向锁、轻量级锁、重量级锁对应不同的锁状态。
+    2. Java的锁机制就是根据资源竞争的激烈程度不断进行锁升级的过程。
+</details>
+
+<h3 id="四、谈谈你对AQS的理解。AQS如何实现可重入锁？"><a href="#四、谈谈你对AQS的理解。AQS如何实现可重入锁？" class="headerlink" title="四、谈谈你对AQS的理解。AQS如何实现可重入锁？"></a>四、谈谈你对AQS的理解。AQS如何实现可重入锁？</h3><details>
+    1. AQS（AbstractQueuedSynchronizer）是一个java线程同步的框架。是jdk中很多锁工具的核心实现框架。
+    2. 在AQS中，维护了一个信号量state和一个线程组成的双向链表队列。其中，这个线程队列就是用来给线程排队的，而state就像是一个红绿灯，用来控制线程排队或者放行的。在不同的场景下，有不同的意义。
+    3. 在可重入锁场景下，state就用来表示加锁的次数。0表示无锁，每加一次锁，state就加1.释放锁state就减1。
+</details>
+
+<h3 id="五、有A，B，C三个线程，如何保证三个线程同时执行？如何在并发情况下保证三个线程依次执行？如何保证三个线程有序交错运行？"><a href="#五、有A，B，C三个线程，如何保证三个线程同时执行？如何在并发情况下保证三个线程依次执行？如何保证三个线程有序交错运行？" class="headerlink" title="五、有A，B，C三个线程，如何保证三个线程同时执行？如何在并发情况下保证三个线程依次执行？如何保证三个线程有序交错运行？"></a>五、有A，B，C三个线程，如何保证三个线程同时执行？如何在并发情况下保证三个线程依次执行？如何保证三个线程有序交错运行？</h3><details>
+    当面试官提到这个问题时，一定要想到其考察的是以下三个并发工具：CountDownLatch, CylicBarrier, Semaphore
+    CountDownLatch就像是百米赛跑，由指挥官统一发射开始信号，然后多个线程同时开始执行。
+    CylicBarrier就像是做核酸检测时一样，一组10人，当一个人来了后，先等待，只有当够了10人后，才会进行统一检测；也就说它保证了多个线程的有序依次执行。
+    相关代码参看：threadSafe.ThreadSafeDemo
+</details>
+
+<h3 id="六、如何对一个字符串快速进行排序？"><a href="#六、如何对一个字符串快速进行排序？" class="headerlink" title="六、如何对一个字符串快速进行排序？"></a>六、如何对一个字符串快速进行排序？</h3><details>
+    首先如果是面试官在并发篇中间插入这个问题，那么面试官很可能问你的是你对 Fork/Join 框架的理解，不是传统的冒泡，快排，交换等排序算法
+    基本模式是 拆分，汇总
+    参看代码：forkjoin.MergeTest
+</details>
+
+<p><img src="https://pic.imgdb.cn/item/60d0479b844ef46bb287632b.jpg"></p>
+<h2 id="Java网络通信篇"><a href="#Java网络通信篇" class="headerlink" title="Java网络通信篇"></a>Java网络通信篇</h2><h3 id="一、TCP和UDP有什么区别？TCP为什么是三次握手，而不是两次？"><a href="#一、TCP和UDP有什么区别？TCP为什么是三次握手，而不是两次？" class="headerlink" title="一、TCP和UDP有什么区别？TCP为什么是三次握手，而不是两次？"></a>一、TCP和UDP有什么区别？TCP为什么是三次握手，而不是两次？</h3><details>
+    TCP Transfer Control Protocol是一种面向连接的、可靠的、传输层通信协议。
+        特点：好比是打电话，面向连接的，点对点的通信，高可靠的，效率比较低，占用的系统资源比较多。
+    UDP User Datagram Protocol 是一种无连接的、不可靠的、传输层通信协议。
+        特点：好比是广播，不需要连接，发送方不管接收方有没有准备好，直接发消息；可以进行广播发送的；传输不可靠，有可能丢失消息；效率比较高，占用的系统资源便较少。
+    TCP建立连接三次握手，断开连接四次挥手。主要从网络的不稳定性方面考虑，网络的不稳定性是确定的，但是我们必须保证会话的准确性，因此至少需要三次握手来保证会话的可靠性。
+    如果是两次握手，可能造成连接资源浪费的情况。
+</details>
+
+
+
+<h3 id="二、Java有哪几种IO模型？有什么区别？"><a href="#二、Java有哪几种IO模型？有什么区别？" class="headerlink" title="二、Java有哪几种IO模型？有什么区别？"></a>二、Java有哪几种IO模型？有什么区别？</h3><p>BIO 同步阻塞IO，传统型 web 服务就是这种模型：</p>
+<p>特点：可靠性差，吞吐量低，适用于连接比较少且比较固定的场景。JDK1.4之前唯一的选择。    <img src="https://pic.imgdb.cn/item/60d0903d844ef46bb25daf7b.jpg"></p>
+<p>NIO 同步非阻塞IO</p>
+<p>在 BIO 的基础上，增加一个 selector ，减少 Thread 对 Server 的压力，就是 NIO：</p>
+<p>特点：可靠性比较好，吞吐量较高，适用于连接比较多并且连接比较短（因为对于客户端来说还是一个轮询，查看是否服务端响应了没），适用于轻操作，例如聊天室</p>
+<p><img src="https://pic.imgdb.cn/item/60d09117844ef46bb26493bc.jpg"></p>
+<p>AIO 异步非阻塞IO</p>
+<p>在 NIO 的基础上，让 Server 处理完成后，主动推送响应到 客户端就是 AIO 了：</p>
+<p>特点：可靠性是最好的，吞吐量也是非常高。适用于连接比较多，并且连接也比较长（重操作）。例如：相册服务器。JDK7版本才开始支持</p>
+<p><img src="https://pic.imgdb.cn/item/60d091e4844ef46bb26b6914.jpg"></p>
+<details>
+同步、异步和阻塞、非阻塞：同步，异步针对的是请求；阻塞，非阻塞针对的是响应。
+    在一个网络请求中，客户端会发一个请求到服务端
+    1. 客户端发了请求后，就一直等着服务端响应。客户端：阻塞。请求：同步
+    2. 客户端发了请求后，就去干别的事情了。时不时的过来检查服务端是否给出了响应。客户端：非阻塞。请求：同步。
+    3. 换成异步请求。客户端发了请求后，就坐在椅子上，等着服务端返回响应。客户端：阻塞。请求：异步。
+    4. 客户端发了请求后，就去干别的事情了。等到服务端给出响应后，再过来处理业务逻辑。客户端：非阻塞。请求：异步。
+    具体内容参考文章：https://blog.csdn.net/qq_42216791/article/details/107316926
+</details>
+
+
+
+<h3 id="三、Java-NIO的几个核心组件是什么？分别有什么用？"><a href="#三、Java-NIO的几个核心组件是什么？分别有什么用？" class="headerlink" title="三、Java NIO的几个核心组件是什么？分别有什么用？"></a>三、Java NIO的几个核心组件是什么？分别有什么用？</h3><p><img src="https://pic.imgdb.cn/item/60d1a3b9844ef46bb2535c16.jpg"></p>
+<details>
+    三大组件: Channel Buffer Selector
+    Channel类似于流，每个channel对应一个buffer缓冲区。channel会注册到selector上。
+    selector会根据channel上发生的读写事件，将请求交由某个空闲的线程去处理。selector对应一个或多个线程。
+    buffer和channel都是可读可写的。
+</details>
+
+
+
+<h3 id="四、select，-poll-和-epoll-有什么区别？"><a href="#四、select，-poll-和-epoll-有什么区别？" class="headerlink" title="四、select， poll 和 epoll 有什么区别？"></a>四、select， poll 和 epoll 有什么区别？</h3><details>
+    这个问题就很深了，与操作系统相关。
+    这三个东西呢，其实就是上面的核心组件Selector在操作系统中的具体实现机制。
+    他们是NIO中多路复用的三种实现机制，是由Linux操作系统提供的。
+    用户空间和内核空间：操作系统为了保护系统安全，将内核划分为两个部分，一个是用户空间，一个是内核空间。用户空间能直接访问底层的硬件设备，必须通过内核空间。
+    文件描述符File Descriptor（FD）：是一个抽象的概念，形式上是一个整数，实际上是一个索引值。指向内核中为每个进程维护进程所打开的文件的记录表。当程序打开一个文件或者创建一个文件时，内核就会向进程返回一个FD。只存在于 Unix，Linux中。
+    select机制：会维护一个FD的集合fd_set。将fd_set从用户空间复制到内核空间，激活socket。
+    poll机制：和select机制是差不多的，把fd_set结构进行了优化，fd集合的大小就突破了操作系统的限制。
+    epoll：event poll。epoll不再扫描所有的FD，只将用户关心的FD的事件存放到内核的一个事件表当中。这样，可以减少用户空间和内核空间之间需要拷贝的数据。
+</details>
+
+
+
+<h3 id="五、描述下-Http-和-Https-的区别"><a href="#五、描述下-Http-和-Https-的区别" class="headerlink" title="五、描述下 Http 和 Https 的区别"></a>五、描述下 Http 和 Https 的区别</h3><details>
+    HTTP：是互联网上应用最为广泛的一种网络通信协议，基于TCP，可以使浏览器工作更为高效，减少网络传输。
+    HTTPS：是http的加强版，可以认为是http+ssl（secure socket layer）。在http的基础上增加了一些列的安全机制。一方面保证数据传输安全，另一方面对访问者增加了验证机制。是目前现行架构下，最为安全的解决方案。
+主要区别：
+    1. HTTP的连接是简单无状态的，HTTPS的数据传输是经过证书加密的，安全性更高。
+    2. HTTP是免费的，而HTTPS需要申请证书，而证书通常是需要收费的，并且费用不低。
+    3. 他们的传输协议不同，所以他们使用的端口也是不一样的，HTTP默认是80端口，而HTTPS默认是443端口。
+HTTPS的缺点：
+    1. HTTPS的握手协议比较费时，所以会影响服务的响应速度以及吞吐量。
+    2. HTTPS也并不是完全安全的。它的证书体系其实也并不是完全安全的。并且HTTPS在面对DDOS这样的攻击时，几乎起不到任何作用。
+</details>
+
+
+
+<h2 id="JVM调优篇"><a href="#JVM调优篇" class="headerlink" title="JVM调优篇"></a>JVM调优篇</h2><h3 id="一、说一说JVM的内存模型？"><a href="#一、说一说JVM的内存模型？" class="headerlink" title="一、说一说JVM的内存模型？"></a>一、说一说JVM的内存模型？</h3><p><img src="https://pic.imgdb.cn/item/60d1ec5f844ef46bb2110b28.jpg"></p>
+<p><img src="https://pic.imgdb.cn/item/60d1ec8c844ef46bb2128d70.jpg"></p>
+<h3 id="二、Java类加载的全过程是怎样的？什么是双亲委派机制？有什么作用？一个对象从加载到JVM，再到被GC清除，都经历了什么过程？"><a href="#二、Java类加载的全过程是怎样的？什么是双亲委派机制？有什么作用？一个对象从加载到JVM，再到被GC清除，都经历了什么过程？" class="headerlink" title="二、Java类加载的全过程是怎样的？什么是双亲委派机制？有什么作用？一个对象从加载到JVM，再到被GC清除，都经历了什么过程？"></a>二、Java类加载的全过程是怎样的？什么是双亲委派机制？有什么作用？一个对象从加载到JVM，再到被GC清除，都经历了什么过程？</h3><details>
+    Java的类加载器：AppClassLoader -> ExtClassLoader -> BootstrapClassLoader
+    每种类加载器都有他自己的加载目录。
+    Java中的类加载器：AppClassLoader，ExtClassLoader -> URLClassLoader -> SecureClassLoader -> ClassLoader
+    每个类加载器对它加载过的类，都是有一个缓存的。
+    双亲委派：向上委托查找，向下委托加载。作用：保护了Java底层的类不会被应用程序覆盖。（例如：String，List等类不会被你自定义的同名String等给覆盖掉）
+    类加载过程：加载 -> 连接 -> 初始化
+    加载：把Java的字节码文件加载到JVM内存当中，并映射成JVM认可的数据结构。
+    连接：分为三个小的阶段：1. 验证：检查加载到的字节信息是否符合JVM规范；2. 准备：创建类或接口的静态变量，并赋初始值，半初始化状态；3.解析：把符号引用转为直接引用。
+    初始化：
+    1. 用户创建一个对象，JVM首先需要到方法区去找对象的类型信息，然后再创建对象。
+    2. JVM要实例化一个对象，首先要在堆当中先创建一个对象。 -> 半初始化状态
+    3. 对象首先会分配在堆内存中新生代的Eden。然后经过一次Minor GC，对象如果存活，就会进入S区。在后续的每次GC中，如果对象一直存活，就会在S区来回拷贝，每移动一次，年龄加1. -> 多大年龄才会移入老年代？年龄是4个bit，最大为15，超过一定年龄后，对象转入老年代。
+    4. 当方法执行结束后，栈中的指针会先移除掉。
+    5. 堆中的对象，经过Full GC，就会被标记为垃圾，然后被GC线程清理掉。
+</details>
+
+
+
+
+
+<h3 id="三、怎么确定一个对象到底是不是垃圾？什么是GC-Root？"><a href="#三、怎么确定一个对象到底是不是垃圾？什么是GC-Root？" class="headerlink" title="三、怎么确定一个对象到底是不是垃圾？什么是GC Root？"></a>三、怎么确定一个对象到底是不是垃圾？什么是GC Root？</h3><details>
+    有两种定位垃圾的方式：
+    1. 引用计数：这种方式是给堆内存当中的每个对象记录一个引用计数。引用个数为0的就认为是垃圾。这是早期JDK中使用的方式。引用计数无法解决循环引用的问题。
+    2. 根可达算法：这种方式是在内存中，从引用根对象向下一直找引用，找不到的对象就是垃圾。
+    哪些是GC Root？
+    stack -> JVM stack, Native stack, class类, run-time constant pool常量池，static reference 静态变量
+</details>
+
+
+
+<h3 id="四、JVM有哪些垃圾回收算法？"><a href="#四、JVM有哪些垃圾回收算法？" class="headerlink" title="四、JVM有哪些垃圾回收算法？"></a>四、JVM有哪些垃圾回收算法？</h3><p><strong>MarkSweep 标记清除算法</strong></p>
+<p><img src="https://pic.imgdb.cn/item/60d2180b844ef46bb2ef03f9.jpg"></p>
+<p>这个算法分为两个阶段，标记阶段：把垃圾内存标记出来，清除阶段：直接将垃圾内存回收。</p>
+<p>这种算法是比较简单的，但是有个很严重的问题，会产生很多内存碎片。</p>
+<p><strong>Copying 拷贝算法</strong></p>
+<p><img src="https://pic.imgdb.cn/item/60d22063844ef46bb233d593.jpg"></p>
+<p>为了解决标记清除算法的内存碎片问题，就产生了拷贝算法。</p>
+<p>拷贝算法将内存分为大小相等的两半，每次只使用其中一半。垃圾回收时，将当前这一块的存活对象全部拷贝到另一半，然后当前这一半内存就可以直接清除。</p>
+<p>这种算法没有内存碎片，但是它的问题就在于浪费空间。而且，它的效率跟存活对象的个数有关。</p>
+<p><strong>MarkCompack 标记压缩算法</strong></p>
+<p><img src="https://pic.imgdb.cn/item/60d22093844ef46bb2353c24.jpg"></p>
+<p>为了解决拷贝算法的空间利用缺陷，就提出了标记压缩算法。这种算法在标记阶段跟标记清除算法是一样的，但是在完成标记后，不是直接清理垃圾内存，而是将存活对象往一端移动，然后将端边界以外的所有内存直接清除。</p>
+<p>这三种算法各有利弊，各自有各自的适合场景。</p>
+<h3 id="五、JVM有哪些垃圾回收器？他们都是怎么工作的？什么是STW？它都发生在哪些阶段？什么是三色标记？如何解决错标记和漏标记的问题？为什么要设计这么多的垃圾回收器？"><a href="#五、JVM有哪些垃圾回收器？他们都是怎么工作的？什么是STW？它都发生在哪些阶段？什么是三色标记？如何解决错标记和漏标记的问题？为什么要设计这么多的垃圾回收器？" class="headerlink" title="五、JVM有哪些垃圾回收器？他们都是怎么工作的？什么是STW？它都发生在哪些阶段？什么是三色标记？如何解决错标记和漏标记的问题？为什么要设计这么多的垃圾回收器？"></a>五、JVM有哪些垃圾回收器？他们都是怎么工作的？什么是STW？它都发生在哪些阶段？什么是三色标记？如何解决错标记和漏标记的问题？为什么要设计这么多的垃圾回收器？</h3><p>STW：Stop-The-World，是在垃圾回收算法执行过程当中，需要将JVM内存冻结的一种状态。</p>
+<p>在STW状态下，Java的所有线程都是停止执行的-GC线程除外，native方法可以执行，但是，不能与JVM交互。GC各种算法优化的重点，就是减少STW，同时这也是JVM调优的重点。</p>
+<h3 id="六、-如何进行JVM调优？JVM参数有哪些？怎么查看一个Java进程的JVM参数？谈谈你了解的JVM参数。如果一个Java程序每次运行一段时间后，就变得非常卡顿，你准备如何对他进行优化？"><a href="#六、-如何进行JVM调优？JVM参数有哪些？怎么查看一个Java进程的JVM参数？谈谈你了解的JVM参数。如果一个Java程序每次运行一段时间后，就变得非常卡顿，你准备如何对他进行优化？" class="headerlink" title="六、 如何进行JVM调优？JVM参数有哪些？怎么查看一个Java进程的JVM参数？谈谈你了解的JVM参数。如果一个Java程序每次运行一段时间后，就变得非常卡顿，你准备如何对他进行优化？"></a>六、 如何进行JVM调优？JVM参数有哪些？怎么查看一个Java进程的JVM参数？谈谈你了解的JVM参数。如果一个Java程序每次运行一段时间后，就变得非常卡顿，你准备如何对他进行优化？</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lorem Moon</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://hello-github-ui.github.io/posts/41684/">https://hello-github-ui.github.io/posts/41684/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/15501/" title="面试题泛谈"><img class="cover" src="https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-07</div><div class="title">面试题泛谈</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/6159d89b2ab3f51d91b0e8d0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lorem Moon</div><div class="author-info__description">即已成过往，便随它而去吧。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hello-github-ui" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:util.you.come@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%B9%B6%E5%8F%91%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">Java并发篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Java%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E7%BA%BF%E7%A8%8B%EF%BC%9F%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、Java如何开启线程？怎么保证线程安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Volatile%E5%92%8CSynchronized%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9FVolatile%E8%83%BD%E4%B8%8D%E8%83%BD%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9FDCL%EF%BC%88Double-Check-Lock%EF%BC%89%E5%8D%95%E4%BE%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0-Volatile%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">二、Volatile和Synchronized有什么区别？Volatile能不能保证线程安全？DCL（Double Check Lock）单例为什么要加 Volatile？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Java%E7%BA%BF%E7%A8%8B%E9%94%81%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F%E5%81%8F%E5%90%91%E9%94%81%E3%80%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E9%94%81%E6%9C%BA%E5%88%B6%E6%98%AF%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E7%9A%84%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">三、Java线程锁机制是怎样的？偏向锁、轻量级锁、重量级锁有什么区别？锁机制是如何升级的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9AQS%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%82AQS%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">四、谈谈你对AQS的理解。AQS如何实现可重入锁？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9C%89A%EF%BC%8CB%EF%BC%8CC%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%97%B6%E6%89%A7%E8%A1%8C%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B9%B6%E5%8F%91%E6%83%85%E5%86%B5%E4%B8%8B%E4%BF%9D%E8%AF%81%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E4%BE%9D%E6%AC%A1%E6%89%A7%E8%A1%8C%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%B8%89%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%BA%8F%E4%BA%A4%E9%94%99%E8%BF%90%E8%A1%8C%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">五、有A，B，C三个线程，如何保证三个线程同时执行？如何在并发情况下保证三个线程依次执行？如何保证三个线程有序交错运行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%A6%82%E4%BD%95%E5%AF%B9%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BF%AB%E9%80%9F%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">六、如何对一个字符串快速进行排序？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E7%AF%87"><span class="toc-number">2.</span> <span class="toc-text">Java网络通信篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81TCP%E5%92%8CUDP%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9FTCP%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">一、TCP和UDP有什么区别？TCP为什么是三次握手，而不是两次？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8DIO%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">二、Java有哪几种IO模型？有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Java-NIO%E7%9A%84%E5%87%A0%E4%B8%AA%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">三、Java NIO的几个核心组件是什么？分别有什么用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81select%EF%BC%8C-poll-%E5%92%8C-epoll-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">四、select， poll 和 epoll 有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8F%8F%E8%BF%B0%E4%B8%8B-Http-%E5%92%8C-Https-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.5.</span> <span class="toc-text">五、描述下 Http 和 Https 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%AF%87"><span class="toc-number">3.</span> <span class="toc-text">JVM调优篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AF%B4%E4%B8%80%E8%AF%B4JVM%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">一、说一说JVM的内存模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BB%8E%E5%8A%A0%E8%BD%BD%E5%88%B0JVM%EF%BC%8C%E5%86%8D%E5%88%B0%E8%A2%ABGC%E6%B8%85%E9%99%A4%EF%BC%8C%E9%83%BD%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">二、Java类加载的全过程是怎样的？什么是双亲委派机制？有什么作用？一个对象从加载到JVM，再到被GC清除，都经历了什么过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%8E%E4%B9%88%E7%A1%AE%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E5%88%B0%E5%BA%95%E6%98%AF%E4%B8%8D%E6%98%AF%E5%9E%83%E5%9C%BE%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AFGC-Root%EF%BC%9F"><span class="toc-number">3.3.</span> <span class="toc-text">三、怎么确定一个对象到底是不是垃圾？什么是GC Root？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81JVM%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-number">3.4.</span> <span class="toc-text">四、JVM有哪些垃圾回收算法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81JVM%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F%E4%BB%96%E4%BB%AC%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AFSTW%EF%BC%9F%E5%AE%83%E9%83%BD%E5%8F%91%E7%94%9F%E5%9C%A8%E5%93%AA%E4%BA%9B%E9%98%B6%E6%AE%B5%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%94%99%E6%A0%87%E8%AE%B0%E5%92%8C%E6%BC%8F%E6%A0%87%E8%AE%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E8%AE%A1%E8%BF%99%E4%B9%88%E5%A4%9A%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F"><span class="toc-number">3.5.</span> <span class="toc-text">五、JVM有哪些垃圾回收器？他们都是怎么工作的？什么是STW？它都发生在哪些阶段？什么是三色标记？如何解决错标记和漏标记的问题？为什么要设计这么多的垃圾回收器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8CJVM%E8%B0%83%E4%BC%98%EF%BC%9FJVM%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E6%80%8E%E4%B9%88%E6%9F%A5%E7%9C%8B%E4%B8%80%E4%B8%AAJava%E8%BF%9B%E7%A8%8B%E7%9A%84JVM%E5%8F%82%E6%95%B0%EF%BC%9F%E8%B0%88%E8%B0%88%E4%BD%A0%E4%BA%86%E8%A7%A3%E7%9A%84JVM%E5%8F%82%E6%95%B0%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AAJava%E7%A8%8B%E5%BA%8F%E6%AF%8F%E6%AC%A1%E8%BF%90%E8%A1%8C%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E5%90%8E%EF%BC%8C%E5%B0%B1%E5%8F%98%E5%BE%97%E9%9D%9E%E5%B8%B8%E5%8D%A1%E9%A1%BF%EF%BC%8C%E4%BD%A0%E5%87%86%E5%A4%87%E5%A6%82%E4%BD%95%E5%AF%B9%E4%BB%96%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="toc-number">3.6.</span> <span class="toc-text">六、 如何进行JVM调优？JVM参数有哪些？怎么查看一个Java进程的JVM参数？谈谈你了解的JVM参数。如果一个Java程序每次运行一段时间后，就变得非常卡顿，你准备如何对他进行优化？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4723/" title="Redis主从搭建"><img src="https://pic.imgdb.cn/item/61210fda4907e2d39c439d0c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis主从搭建"/></a><div class="content"><a class="title" href="/posts/4723/" title="Redis主从搭建">Redis主从搭建</a><time datetime="2022-10-22T06:47:40.080Z" title="Created 2022-10-22 14:47:40">2022-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/43818/" title="Win10开启上帝模式"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Win10开启上帝模式"/></a><div class="content"><a class="title" href="/posts/43818/" title="Win10开启上帝模式">Win10开启上帝模式</a><time datetime="2022-03-08T12:24:42.000Z" title="Created 2022-03-08 20:24:42">2022-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/55966/" title="Ubuntu修改静态IP"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu修改静态IP"/></a><div class="content"><a class="title" href="/posts/55966/" title="Ubuntu修改静态IP">Ubuntu修改静态IP</a><time datetime="2022-03-04T16:11:25.000Z" title="Created 2022-03-05 00:11:25">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/42154/" title="Java封装同步锁"><img src="https://pic.imgdb.cn/item/621ddc1c2ab3f51d914c66cb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java封装同步锁"/></a><div class="content"><a class="title" href="/posts/42154/" title="Java封装同步锁">Java封装同步锁</a><time datetime="2022-03-02T12:50:01.000Z" title="Created 2022-03-02 20:50:01">2022-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1553/" title="初识大数据(一)"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初识大数据(一)"/></a><div class="content"><a class="title" href="/posts/1553/" title="初识大数据(一)">初识大数据(一)</a><time datetime="2022-03-01T07:53:43.000Z" title="Created 2022-03-01 15:53:43">2022-03-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/61210e2b4907e2d39c3ff679.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2022 By Lorem Moon</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://hello-blogger-ui.blogspot.com/">google blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Algolia</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'mFM6i90bN6KqyTH6tmC3q7dz-gzGzoHsz',
+      appKey: 'T2tsKoiKjMaB0wgtIAgSz6Ul',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
