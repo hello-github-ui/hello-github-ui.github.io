@@ -1,0 +1,60 @@
+baseURL = 'https://hello-github-ui.github.io/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+title = '我的博客'
+theme = 'PaperMod'
+hasCJKLanguage = true
+enableRobotsTXT = true
+enableGitInfo = true
+pagination.pagerSize = 8
+
+[caches.images]
+  dir = ':cacheDir/images'
+
+[params]
+  env = 'production'
+  description = '用 Hugo + Pages CMS 搭建的个人博客'
+  author = 'hello-github-ui'
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = false
+  disableThemeToggle = false
+  DateFormat = '2006-01-02'
+
+  [params.homeInfoParams]
+    Title = '你好，这里是 hello-github-ui'
+    Content = '技术随笔 / 笔记 / 个人博客'
+
+  [[params.socialIcons]]
+    name = 'github'
+    url = 'https://github.com/hello-github-ui'
+
+[menu]
+  [[menu.main]]
+    identifier = 'posts'
+    name = '文章'
+    url = '/posts/'
+    weight = 10
+  [[menu.main]]
+    identifier = 'tags'
+    name = '标签'
+    url = '/tags/'
+    weight = 20
+  [[menu.main]]
+    identifier = 'archives'
+    name = '归档'
+    url = '/archives/'
+    weight = 30
+  [[menu.main]]
+    identifier = 'search'
+    name = '搜索'
+    url = '/search/'
+    weight = 40
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
