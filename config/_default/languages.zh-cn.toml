@@ -1,0 +1,24 @@
+disabled = false
+locale = "zh-cn"
+label = "简体中文"
+weight = 1
+title = "QiYue's Blog"
+
+[params]
+  displayName = "中文"
+  isoCode = "zh-CN"
+  rtl = false
+  dateFormat = "2006-01-02"
+  # logo = "img/logo.png"
+  description = "QiYue's Blog — 技术随笔与个人笔记"
+  copyright = "&copy; { year } QiYue's Blog"
+
+[params.author]
+  name = "QiYue"
+  image = "img/logo.png"
+  imageQuality = 96
+  headline = "QiYue's Blog"
+  bio = "技术随笔 / 笔记 / 个人博客"
+  links = [
+    { github = "https://github.com/hello-github-ui" },
+  ]

@@ -1,0 +1,24 @@
+disabled = false
+locale = "en"
+label = "English"
+weight = 2
+title = "QiYue's Blog"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "January 2, 2006"
+  # logo = "img/logo.png"
+  description = "QiYue's Blog — notes and essays"
+  copyright = "&copy; { year } QiYue's Blog"
+
+[params.author]
+  name = "QiYue"
+  image = "img/logo.png"
+  imageQuality = 96
+  headline = "QiYue's Blog"
+  bio = "Technical notes and personal essays."
+  links = [
+    { github = "https://github.com/hello-github-ui" },
+  ]
