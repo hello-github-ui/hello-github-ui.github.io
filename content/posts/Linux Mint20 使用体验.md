@@ -5,4 +5,6 @@ draft: false
 description: Linux Mint20 使用体验
 tags:
   - Linux
+categories:
+  - 记录
 ---
