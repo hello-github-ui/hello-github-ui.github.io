@@ -8,6 +8,7 @@ tags:
 categories:
   - 编程
 ---
+
 # Java共支持三种网络编程模式：BIO，NIO，AIO
 
 ## 三种IO模式适用场景
@@ -48,17 +49,11 @@ Java BIO：适用于连接数目较小且相对固定的架构，对服务器的
 ```java
 
 package com.crazy.io.bio;
-
 import java.io.IOException;
-
 import java.io.InputStream;
-
 import java.net.ServerSocket;
-
 import java.net.Socket;
-
 import java.util.concurrent.ExecutorService;
-
 import java.util.concurrent.Executors;
 
 public class BIOServer {
@@ -174,13 +169,9 @@ public class BIOServer {
 ```java
 
 package com.crazy.io.zerocopy;
-
 import java.io.DataOutputStream;
-
 import java.io.FileInputStream;
-
 import java.io.InputStream;
-
 import java.net.Socket;
 
 public class OldIOClient {
@@ -316,7 +307,6 @@ ByteBuffer中常用的方法：
 ```java
 
 // 缓冲区创建相关api
-
     public static ByteBuffer allocateDirect(int capacity)//创建直接缓冲区
 
     public static ByteBuffer allocate(int capacity)//设置缓冲区的初始容量
@@ -368,7 +358,6 @@ SocketChannel 类似 Socket。
 把1.txt中的文件读取到2.txt中。
 
 ```java
-
 public class NIOFileChannel03 {
 
     public static void main(String[] args) throws IOException {
@@ -474,23 +463,14 @@ Selector 进行监听 select 方法, 返回有事件发生的通道的个数。
 ```java
 
 package com.crazy.io.nio.buffer;
-
 import java.io.IOException;
-
 import java.net.InetSocketAddress;
-
 import java.nio.ByteBuffer;
-
 import java.nio.channels.SelectionKey;
-
 import java.nio.channels.Selector;
-
 import java.nio.channels.ServerSocketChannel;
-
 import java.nio.channels.SocketChannel;
-
 import java.util.Iterator;
-
 import java.util.Set;
 
 public class NIOServer {
@@ -598,13 +578,9 @@ public class NIOServer {
 ```java
 
 package com.crazy.io.nio.buffer;
-
 import java.io.IOException;
-
 import java.net.InetSocketAddress;
-
 import java.nio.ByteBuffer;
-
 import java.nio.channels.SocketChannel;
 
 public class NIOClient {
@@ -646,7 +622,6 @@ public class NIOClient {
         [System.in.read](http://System.in.read)();
 
     }
-
 }
 
 ```
@@ -658,4 +633,3 @@ public class NIOClient {
 ![](https:/pic.imgdb.cn/item/60d192da844ef46bb2db4035.jpg)
 
 *以上内容参考自[失忆老幺]([https://blog.csdn.net/qq_42216791/article/details/107316926)]([https://blog.csdn.net/qq_42216791/article/details/107316926](https://blog.csdn.net/qq_42216791/article/details/107316926))*)*
-
