@@ -6,4 +6,5 @@ description: Centos7安装Redis
 tags:
   - Redis
   - Linux
+  - Centos
 ---
