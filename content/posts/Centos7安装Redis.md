@@ -7,4 +7,6 @@ tags:
   - Redis
   - Linux
   - Centos
+categories:
+  - 记录
 ---
