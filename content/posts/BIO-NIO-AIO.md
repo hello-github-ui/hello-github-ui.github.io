@@ -2,20 +2,19 @@
 title: BIO-NIO-AIO
 date: 2026-09-10
 draft: false
+description: Java共支持三种网络编程模式：BIO，NIO，AIO
 tags:
   - Java
 categories:
   - 编程
 ---
-# java共支持三种网络编程模式：BIO，NIO，AIO
+# Java共支持三种网络编程模式：BIO，NIO，AIO
 
 ## 三种IO模式适用场景
 
-* BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发有局限性，JDK1.4以前是唯一的选择，好处是编码实现方式简单，且也容易理解。
-
-* NIO方式适用于连接数目多且连接比较段的架构，比如聊天服务器，弹幕系统等，相比BIO编码较复杂，JDK1.4以后开始支持。
-
-* AIO方式适用于连接数据多且连接较长的场景，比如相册服务器等，编程较复杂，JDK1.7才开始支持。目前好像并为得到广泛使用。
+- BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发有局限性，JDK1.4以前是唯一的选择，好处是编码实现方式简单，且也容易理解。
+- NIO方式适用于连接数目多且连接比较段的架构，比如聊天服务器，弹幕系统等，相比BIO编码较复杂，JDK1.4以后开始支持。
+- AIO方式适用于连接数据多且连接较长的场景，比如相册服务器等，编程较复杂，JDK1.7才开始支持。目前好像并为得到广泛使用。
 
 # BIO(blocking I/O) 基本介绍
 
@@ -27,21 +26,21 @@ Java BIO：适用于连接数目较小且相对固定的架构，对服务器的
 
 ## BIO的原理示意图
 
-![]([https:/pic.imgdb.cn/item/60d18fae844ef46bb2c1c3b9.jpg](https:/pic.imgdb.cn/item/60d18fae844ef46bb2c1c3b9.jpg))
+![](https:/pic.imgdb.cn/item/60d18fae844ef46bb2c1c3b9.jpg)
 
 ## 流程
 
-<ol>
+1. 
 
-<li>服务器启动ServerSoket。</li>
+- 服务器启动ServerSoket。
 
-<li>客户端启动Socket与服务器通信，默认情况下服务器需要对每个客户端建立一个线程与之通信。</li>
+- 客户端启动Socket与服务器通信，默认情况下服务器需要对每个客户端建立一个线程与之通信。
 
-<li>客户端发出请求与服务器通信。</li>
+- 客户端发出请求与服务器通信。
 
-<li>如果请求成功，客户端会等待请求结束后继续执行。</li>
+- 如果请求成功，客户端会等待请求结束后继续执行。
 
-</ol>
+
 
 ## Java BIO应用实例
 
@@ -239,15 +238,15 @@ public class OldIOClient {
 
 连接成功后通过按 Ctrl+] 符号进入发送数据界面
 
-![]([https:/pic.imgdb.cn/item/60d190a4844ef46bb2c90661.jpg](https:/pic.imgdb.cn/item/60d190a4844ef46bb2c90661.jpg))
+![](https:/pic.imgdb.cn/item/60d190a4844ef46bb2c90661.jpg)
 
 `send hello world`
 
-![]([https:/pic.imgdb.cn/item/60d190cf844ef46bb2ca5faf.jpg](https:/pic.imgdb.cn/item/60d190cf844ef46bb2ca5faf.jpg))
+![](https:/pic.imgdb.cn/item/60d190cf844ef46bb2ca5faf.jpg)
 
 查看服务端收到的消息
 
-![]([https:/pic.imgdb.cn/item/60d190e3844ef46bb2caf4a0.jpg](https:/pic.imgdb.cn/item/60d190e3844ef46bb2caf4a0.jpg))
+![](https:/pic.imgdb.cn/item/60d190e3844ef46bb2caf4a0.jpg)
 
 完成了简单的以BIO实现的客户端与服务器之间的交互。
 
@@ -277,7 +276,7 @@ NIO的并发请求要远远大于BIO。
 
 ## Selector 、 Channel 和 Buffer 的关系图
 
-![]([https:/pic.imgdb.cn/item/60d1911a844ef46bb2cca445.jpg](https:/pic.imgdb.cn/item/60d1911a844ef46bb2cca445.jpg))
+![](https:/pic.imgdb.cn/item/60d1911a844ef46bb2cca445.jpg)
 
 ## 关系图说明
 
@@ -301,15 +300,15 @@ channel 是双向的, 可以返回底层操作系统的情况, 比如Linux ， �
 
 缓冲区本质上是一个可以读写数据的内存块，可以理解成是一个容器对象(含数组)，该对象提供了一组方法，可以更轻松地使用内存块，缓冲区对象内置了一些机制，能够跟踪和记录缓冲区的状态变化情况。Channel 提供从文件、网络读取数据的渠道，但是读取或写入的数据都必须经由 Buffer。
 
-![]([https:/pic.imgdb.cn/item/60d19145844ef46bb2cdef1c.jpg](https:/pic.imgdb.cn/item/60d19145844ef46bb2cdef1c.jpg))
+![](https:/pic.imgdb.cn/item/60d19145844ef46bb2cdef1c.jpg)
 
 ## Buffer常用方法解析
 
-![]([https:/pic.imgdb.cn/item/60d1917a844ef46bb2cf9fd7.jpg](https:/pic.imgdb.cn/item/60d1917a844ef46bb2cf9fd7.jpg))
+![](https:/pic.imgdb.cn/item/60d1917a844ef46bb2cf9fd7.jpg)
 
 常用的ByteBuffer是一个抽象类，继承Buffer，实现了Comparable接口。
 
-![]([https:/pic.imgdb.cn/item/60d1918b844ef46bb2d02240.jpg](https:/pic.imgdb.cn/item/60d1918b844ef46bb2d02240.jpg))
+![](https:/pic.imgdb.cn/item/60d1918b844ef46bb2d02240.jpg)
 
 mark：标记。
 
@@ -355,11 +354,11 @@ ByteBuffer中常用的方法：
 
 通道可以从缓冲读数据，也可以写数据到缓冲。
 
-![]([https:/pic.imgdb.cn/item/60d191bc844ef46bb2d1c432.jpg](https:/pic.imgdb.cn/item/60d191bc844ef46bb2d1c432.jpg))
+![](https:/pic.imgdb.cn/item/60d191bc844ef46bb2d1c432.jpg)
 
 ## 通道说明
 
-![]([https:/pic.imgdb.cn/item/60d191ce844ef46bb2d2655d.jpg](https:/pic.imgdb.cn/item/60d191ce844ef46bb2d2655d.jpg))
+![](https:/pic.imgdb.cn/item/60d191ce844ef46bb2d2655d.jpg)
 
 Channel是一个接口。
 
@@ -445,7 +444,7 @@ Selector 能够检测多个注册的通道上是否有事件发生，如果有�
 
 ## Selector的示意图
 
-![]([https:/pic.imgdb.cn/item/60d19238844ef46bb2d5f956.jpg](https:/pic.imgdb.cn/item/60d19238844ef46bb2d5f956.jpg))
+![](https:/pic.imgdb.cn/item/60d19238844ef46bb2d5f956.jpg)
 
 线程从某客户端 Socket 通道进行读写数据时，若没有数据可用时，该线程可以进行其他任务。
 
@@ -457,7 +456,7 @@ Selector 能够检测多个注册的通道上是否有事件发生，如果有�
 
 ## NIO 非阻塞网络编程原理图
 
-![]([https:/pic.imgdb.cn/item/60d19254844ef46bb2d6e8c5.jpg](https:/pic.imgdb.cn/item/60d19254844ef46bb2d6e8c5.jpg))
+![](https:/pic.imgdb.cn/item/60d19254844ef46bb2d6e8c5.jpg)
 
 客户端连接时，会通过ServerSocketChannel 得到 SocketChannel
 
@@ -663,7 +662,7 @@ public class NIOClient {
 
 # 总结
 
-![]([https:/pic.imgdb.cn/item/60d192da844ef46bb2db4035.jpg](https:/pic.imgdb.cn/item/60d192da844ef46bb2db4035.jpg))
+![](https:/pic.imgdb.cn/item/60d192da844ef46bb2db4035.jpg)
 
-*以上内容参考自[失忆老幺]([https://blog.csdn.net/qq_42216791/article/details/107316926)](https://blog.csdn.net/qq_42216791/article/details/107316926)*)*
+*以上内容参考自[失忆老幺]([https://blog.csdn.net/qq_42216791/article/details/107316926)]([https://blog.csdn.net/qq_42216791/article/details/107316926](https://blog.csdn.net/qq_42216791/article/details/107316926))*)*
 
