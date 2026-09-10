@@ -5,4 +5,6 @@ draft: false
 description: Centos7安装MySQL8.x
 tags:
   - Linux
+categories:
+  - 记录
 ---
