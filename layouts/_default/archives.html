@@ -1,0 +1,104 @@
+{{ define "main" }}
+  {{ .Scratch.Set "scope" "list" }}
+  {{ $enableToc := .Params.showTableOfContents | default (site.Params.list.showTableOfContents | default false) }}
+  {{ $showToc := and $enableToc (in .TableOfContents "<ul") }}
+
+  {{/* Hero */}}
+  {{ if site.Params.list.showHero | default false }}
+    {{ $heroStyle := print "hero/" site.Params.list.heroStyle ".html" }}
+    {{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+      {{ partial $heroStyle . }}
+    {{ else }}
+      {{ partial "hero/basic.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Header */}}
+  <header>
+    {{ if .Params.showBreadcrumbs | default (site.Params.list.showBreadcrumbs | default false) }}
+      {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      {{ .Title | emojify }}
+    </h1>
+    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      {{ partial "article-meta/list.html" (dict "context" . "scope" "single") }}
+    </div>
+  </header>
+
+  {{/* Description (markdown content) */}}
+  {{ $tocMargin := cond $showToc "mt-12" "mt-0" }}
+  {{ $topClass := cond (or (hasPrefix site.Params.header.layout "fixed") (eq site.Params.header.layout "floating")) "lg:top-[140px]" "lg:top-10" }}
+  <section class="{{ $tocMargin }} prose flex max-w-full flex-col dark:prose-invert lg:flex-row mb-10">
+    {{ if $showToc }}
+      <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+        <div class="toc ps-5 print:hidden lg:sticky {{ $topClass }}">
+          {{ partial "toc.html" . }}
+        </div>
+      </div>
+    {{ end }}
+    <div class="min-w-0 min-h-0 max-w-prose w-full">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{/* Timeline Archive */}}
+  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{ if gt (len $pages) 0 }}
+    <div class="timeline-container">
+      {{ range ($pages.GroupByDate "2006") }}
+        <div class="timeline-year-group">
+          <div class="timeline-year-marker">
+            <span class="timeline-year">{{ .Key }}</span>
+            <span class="timeline-year-count">{{ len .Pages }} 篇</span>
+          </div>
+          <div class="timeline-items">
+            {{ range .Pages.GroupByDate "01" }}
+              {{ $monthKey := .Key }}
+              {{ $months := slice "一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月" }}
+              {{ $monthIdx := 0 }}
+              {{ if eq $monthKey "01" }}{{ $monthIdx = 0 }}{{ end }}
+              {{ if eq $monthKey "02" }}{{ $monthIdx = 1 }}{{ end }}
+              {{ if eq $monthKey "03" }}{{ $monthIdx = 2 }}{{ end }}
+              {{ if eq $monthKey "04" }}{{ $monthIdx = 3 }}{{ end }}
+              {{ if eq $monthKey "05" }}{{ $monthIdx = 4 }}{{ end }}
+              {{ if eq $monthKey "06" }}{{ $monthIdx = 5 }}{{ end }}
+              {{ if eq $monthKey "07" }}{{ $monthIdx = 6 }}{{ end }}
+              {{ if eq $monthKey "08" }}{{ $monthIdx = 7 }}{{ end }}
+              {{ if eq $monthKey "09" }}{{ $monthIdx = 8 }}{{ end }}
+              {{ if eq $monthKey "10" }}{{ $monthIdx = 9 }}{{ end }}
+              {{ if eq $monthKey "11" }}{{ $monthIdx = 10 }}{{ end }}
+              {{ if eq $monthKey "12" }}{{ $monthIdx = 11 }}{{ end }}
+              {{ $monthName := index $months $monthIdx }}
+              <div class="timeline-month-row">
+                <div class="timeline-month">
+                  <span class="timeline-month-label">{{ $monthName }}</span>
+                </div>
+                <div class="timeline-month-articles">
+                  {{ range .Pages }}
+                    <article class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <a class="timeline-link" href="{{ .RelPermalink }}">
+                        <div class="timeline-date">{{ .Date.Format "01-02" }}</div>
+                        <div class="timeline-title">{{ .Title }}</div>
+                        {{ with .Params.description }}
+                          <div class="timeline-summary">{{ . }}</div>
+                        {{ end }}
+                      </a>
+                    </article>
+                  {{ end }}
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  {{ else }}
+    <section class="mt-10 prose dark:prose-invert">
+      <p class="py-8 border-t">
+        <em>{{ i18n "list.no_articles" | emojify }}</em>
+      </p>
+    </section>
+  {{ end }}
+{{ end }}

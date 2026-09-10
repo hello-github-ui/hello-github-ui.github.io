@@ -35,12 +35,6 @@
   url = "https://hello-github-ui.github.io/exams/#/"
   weight = 20
 
-[[main]]
-  identifier = "search"
-  name = "搜索"
-  pageRef = "search"
-  weight = 60
-
 [[footer]]
   name = "文章"
   pageRef = "posts"
@@ -57,6 +51,11 @@
   weight = 30
 
 [[footer]]
+  name = "归档"
+  pageRef = "archives"
+  weight = 40
+
+[[footer]]
   name = "搜索"
   pageRef = "search"
-  weight = 40
+  weight = 50

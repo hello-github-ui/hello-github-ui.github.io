@@ -19,12 +19,3 @@ heroButtons:
 {{< lead >}}
 在这里，你可以找到关于 Linux 运维、数据库管理、开发工具使用等方面的实用指南和经验分享。
 {{< /lead >}}
-
-{{< feature-grid >}}
-  {{< feature icon="layout" title="技术笔记" url="/posts/" >}}
-    Linux 运维、MySQL、Redis 等数据库的安装配置与实践记录。
-  {{< /feature >}}
-  {{< feature icon="code" title="开发工具" >}}
-    Git、Hugo、Pages CMS 等开发工具的使用技巧与配置方法。
-  {{< /feature >}}
-{{< /feature-grid >}}
