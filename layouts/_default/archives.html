@@ -42,58 +42,109 @@
     </div>
   </section>
 
-  {{/* Timeline Archive */}}
+  {{/* Timeline Archive - Alternating layout with thumbnails */}}
   {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{ if gt (len $pages) 0 }}
-    <div class="timeline-container">
-      {{ range ($pages.GroupByDate "2006") }}
-        <div class="timeline-year-group">
-          <div class="timeline-year-marker">
-            <span class="timeline-year">{{ .Key }}</span>
-            <span class="timeline-year-count">{{ len .Pages }} 篇</span>
+  {{ $paginator := .Paginate $pages.ByDate.Reverse 20 }}
+  {{ if gt $paginator.Pages 0 }}
+    <div class="timeline-wrapper">
+      <div class="timeline-axis"></div>
+      {{ $index := 0 }}
+      {{ $currentYear := "" }}
+      {{ range $paginator.Pages }}
+        {{ $post := . }}
+        {{ $year := .Date.Format "2006" }}
+        {{ if ne $year $currentYear }}
+          {{ $currentYear = $year }}
+          <div class="timeline-year-label">
+            <span>{{ $year }}</span>
           </div>
-          <div class="timeline-items">
-            {{ range .Pages.GroupByDate "01" }}
-              {{ $monthKey := .Key }}
-              {{ $months := slice "一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月" }}
-              {{ $monthIdx := 0 }}
-              {{ if eq $monthKey "01" }}{{ $monthIdx = 0 }}{{ end }}
-              {{ if eq $monthKey "02" }}{{ $monthIdx = 1 }}{{ end }}
-              {{ if eq $monthKey "03" }}{{ $monthIdx = 2 }}{{ end }}
-              {{ if eq $monthKey "04" }}{{ $monthIdx = 3 }}{{ end }}
-              {{ if eq $monthKey "05" }}{{ $monthIdx = 4 }}{{ end }}
-              {{ if eq $monthKey "06" }}{{ $monthIdx = 5 }}{{ end }}
-              {{ if eq $monthKey "07" }}{{ $monthIdx = 6 }}{{ end }}
-              {{ if eq $monthKey "08" }}{{ $monthIdx = 7 }}{{ end }}
-              {{ if eq $monthKey "09" }}{{ $monthIdx = 8 }}{{ end }}
-              {{ if eq $monthKey "10" }}{{ $monthIdx = 9 }}{{ end }}
-              {{ if eq $monthKey "11" }}{{ $monthIdx = 10 }}{{ end }}
-              {{ if eq $monthKey "12" }}{{ $monthIdx = 11 }}{{ end }}
-              {{ $monthName := index $months $monthIdx }}
-              <div class="timeline-month-row">
-                <div class="timeline-month">
-                  <span class="timeline-month-label">{{ $monthName }}</span>
-                </div>
-                <div class="timeline-month-articles">
-                  {{ range .Pages }}
-                    <article class="timeline-item">
-                      <div class="timeline-dot"></div>
-                      <a class="timeline-link" href="{{ .RelPermalink }}">
-                        <div class="timeline-date">{{ .Date.Format "01-02" }}</div>
-                        <div class="timeline-title">{{ .Title }}</div>
-                        {{ with .Params.description }}
-                          <div class="timeline-summary">{{ . }}</div>
-                        {{ end }}
-                      </a>
-                    </article>
+        {{ end }}
+
+        {{ $side := "left" }}
+        {{ if eq (mod $index 2) 1 }}{{ $side = "right" }}{{ end }}
+
+        {{/* Get featured image */}}
+        {{ $featuredURL := "" }}
+        {{ if not .Params.hideFeatureImage }}
+          {{ with partial "functions/feature-image.html" . }}
+            {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+              {{ if site.Params.hotlinkFeatureImage }}
+                {{ $featuredURL = . }}
+              {{ end }}
+            {{ else }}
+              {{ $img := $post.Resources.Get . }}
+              {{ if not $img }}
+                {{ $img = resources.Get . }}
+              {{ end }}
+              {{ with $img }}
+                {{ if not (eq .MediaType.SubType "svg") }}
+                  {{ with try (.Resize "400x") }}
+                    {{ with .Value }}{{ $featuredURL = .RelPermalink }}{{ end }}
+                  {{ else }}
+                    {{ $featuredURL = .RelPermalink }}
                   {{ end }}
-                </div>
+                {{ else }}
+                  {{ $featuredURL = .RelPermalink }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{/* fallback to default */}}
+          {{ if not $featuredURL }}
+            {{ $default := site.Store.Get "defaultFeaturedImage" }}
+            {{ if $default.url }}
+              {{ $featuredURL = $default.url }}
+            {{ else if $default.obj }}
+              {{ with $default.obj }}
+                {{ if not (eq .MediaType.SubType "svg") }}
+                  {{ with try (.Resize "400x") }}
+                    {{ with .Value }}{{ $featuredURL = .RelPermalink }}{{ end }}
+                  {{ else }}
+                    {{ $featuredURL = .RelPermalink }}
+                  {{ end }}
+                {{ else }}
+                  {{ $featuredURL = .RelPermalink }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+
+        <article class="timeline-card timeline-card--{{ $side }}" data-side="{{ $side }}">
+          <div class="timeline-card__dot"></div>
+          <a href="{{ .RelPermalink }}" class="timeline-card__link">
+            {{ with $featuredURL }}
+              <div class="timeline-card__thumb">
+                <img
+                  src="{{ . }}"
+                  alt="{{ $post.Title }}"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low" />
               </div>
             {{ end }}
-          </div>
-        </div>
+            <div class="timeline-card__body">
+              <div class="timeline-card__meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                {{ with .Params.categories }}
+                  <span class="timeline-card__dot-sep">&middot;</span>
+                  <span class="timeline-card__category">{{ index . 0 }}</span>
+                {{ end }}
+              </div>
+              <h3 class="timeline-card__title">{{ .Title }}</h3>
+              {{ with .Params.description }}
+                <p class="timeline-card__desc">{{ . }}</p>
+              {{ end }}
+            </div>
+          </a>
+        </article>
+        {{ $index = add $index 1 }}
       {{ end }}
     </div>
+
+    {{/* Pagination */}}
+    {{ partial "pagination.html" . }}
   {{ else }}
     <section class="mt-10 prose dark:prose-invert">
       <p class="py-8 border-t">
