@@ -30,17 +30,10 @@ Java BIO：适用于连接数目较小且相对固定的架构，对服务器的
 
 ## 流程
 
-1. 
-
 - 服务器启动ServerSoket。
-
 - 客户端启动Socket与服务器通信，默认情况下服务器需要对每个客户端建立一个线程与之通信。
-
 - 客户端发出请求与服务器通信。
-
 - 如果请求成功，客户端会等待请求结束后继续执行。
-
-
 
 ## Java BIO应用实例
 
@@ -54,15 +47,15 @@ Java BIO：适用于连接数目较小且相对固定的架构，对服务器的
 
 ```java
 
-package [com.crazy.io.bio](http://com.crazy.io.bio);
+package com.crazy.io.bio;
 
-import [java.io](http://java.io).IOException;
+import java.io.IOException;
 
-import [java.io](http://java.io).InputStream;
+import java.io.InputStream;
 
-import [java.net](http://java.net).ServerSocket;
+import java.net.ServerSocket;
 
-import [java.net](http://java.net).Socket;
+import java.net.Socket;
 
 import java.util.concurrent.ExecutorService;
 
@@ -180,15 +173,15 @@ public class BIOServer {
 
 ```java
 
-package [com.crazy.io](http://com.crazy.io).zerocopy;
+package com.crazy.io.zerocopy;
 
-import [java.io](http://java.io).DataOutputStream;
+import java.io.DataOutputStream;
 
-import [java.io](http://java.io).FileInputStream;
+import java.io.FileInputStream;
 
-import [java.io](http://java.io).InputStream;
+import java.io.InputStream;
 
-import [java.net](http://java.net).Socket;
+import java.net.Socket;
 
 public class OldIOClient {
 
@@ -480,11 +473,11 @@ Selector 进行监听 select 方法, 返回有事件发生的通道的个数。
 
 ```java
 
-package [com.crazy.io](http://com.crazy.io).nio.buffer;
+package com.crazy.io.nio.buffer;
 
-import [java.io](http://java.io).IOException;
+import java.io.IOException;
 
-import [java.net](http://java.net).InetSocketAddress;
+import java.net.InetSocketAddress;
 
 import java.nio.ByteBuffer;
 
@@ -604,11 +597,11 @@ public class NIOServer {
 
 ```java
 
-package [com.crazy.io](http://com.crazy.io).nio.buffer;
+package com.crazy.io.nio.buffer;
 
-import [java.io](http://java.io).IOException;
+import java.io.IOException;
 
-import [java.net](http://java.net).InetSocketAddress;
+import java.net.InetSocketAddress;
 
 import java.nio.ByteBuffer;
 
