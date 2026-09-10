@@ -13,6 +13,34 @@
   pageRef = "tags"
   weight = 30
 
+[[main]]
+  pre = "github"
+  name = "GitHub"
+  url = "https://github.com/hello-github-ui/hello-github-ui.github.io"
+  weight = 40
+
+[[main]]
+  name = "友链"
+  weight = 50
+
+[[main]]
+  name = "mdviewer"
+  parent = "友链"
+  url = "https://mdviewer-fceu.onrender.com/docs/intro"
+  weight = 10
+
+[[main]]
+  name = "面试题"
+  parent = "友链"
+  url = "https://hello-github-ui.github.io/exams/#/"
+  weight = 20
+
+[[main]]
+  identifier = "search"
+  name = "搜索"
+  pageRef = "search"
+  weight = 60
+
 [[footer]]
   name = "文章"
   pageRef = "posts"
@@ -27,3 +55,8 @@
   name = "标签"
   pageRef = "tags"
   weight = 30
+
+[[footer]]
+  name = "搜索"
+  pageRef = "search"
+  weight = 40

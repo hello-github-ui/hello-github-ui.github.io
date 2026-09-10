@@ -3,6 +3,7 @@ title: "你好，世界"
 date: 2026-09-09T14:52:00+08:00
 draft: false
 description: "这是第一篇文章，用来验证站点能编译、能发布。"
+featureImage: "featured.png"
 tags:
   - 随笔
 categories:

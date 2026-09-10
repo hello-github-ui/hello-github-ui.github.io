@@ -4,6 +4,7 @@ date: 2026-09-09
 draft: false
 description: 替代 WordPress 的免费方案：静态站点、GitHub Actions 自动部署、Pages CMS 可视化后台。含
   Windows 离线安装 Hugo Extended 的完整步骤。
+featureImage: "front-matter.png"
 tags:
   - Pages CMS
   - Hugo

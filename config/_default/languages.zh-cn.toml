@@ -9,7 +9,7 @@ title = "QiYue's Blog"
   isoCode = "zh-CN"
   rtl = false
   dateFormat = "2006-01-02"
-  # logo = "img/logo.png"
+  logo = "img/logo.png"
   description = "QiYue's Blog — 技术随笔与个人笔记"
   copyright = "&copy; { year } QiYue's Blog"
 
@@ -18,7 +18,12 @@ title = "QiYue's Blog"
   image = "img/logo.png"
   imageQuality = 96
   headline = "QiYue's Blog"
-  bio = "技术随笔 / 笔记 / 个人博客"
+  bio = "技术探索者，记录 Linux、数据库、开发工具的实践经验。"
   links = [
     { github = "https://github.com/hello-github-ui" },
+    { x = "https://x.com/yuan_meng_meng" },
+    { telegram = "https://web.telegram.org/" },
+    { line = "https://www.line.me/en/" },
+    { facebook = "https://www.facebook.com" },
+    { LinkedIn = "https://www.linkedin.com" }
   ]

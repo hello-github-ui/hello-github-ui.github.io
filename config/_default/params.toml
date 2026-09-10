@@ -1,5 +1,5 @@
-colorScheme = "noir"
-defaultAppearance = "auto"
+colorScheme = "blowfish"
+defaultAppearance = "dark"
 autoSwitchAppearance = true
 
 enableA11y = false
@@ -13,7 +13,10 @@ mainSections = ["posts"]
 disableImageOptimization = false
 disableImageOptimizationMD = false
 disableTextInHeader = false
+defaultBackgroundImage = "img/site-background.svg"
+backgroundCanvas = true
 hotlinkFeatureImage = false
+defaultFeaturedImage = "featured.png"
 fingerprintAlgorithm = "sha512"
 highlightCurrentMenuArea = true
 smartTOC = true
@@ -28,7 +31,8 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
   storedLanguageRedirect = true
 
 [header]
-  layout = "fixed"
+  layout = "floating"
+  mobileMenuStyle = "dropdown"
 
 [footer]
   showMenu = true
@@ -38,7 +42,7 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
   showScrollToTop = true
 
 [homepage]
-  layout = "profile"
+  layout = "landing"
   showRecent = true
   showRecentItems = 10
   showMoreLink = true
@@ -50,13 +54,13 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
 
 [article]
   showDate = true
-  showViews = false
-  showLikes = false
+  showViews = true
+  showLikes = true
   showDateOnlyInArticle = false
   showDateUpdated = false
   showAuthor = true
   showHero = true
-  heroStyle = "big"
+  heroStyle = "background"
   layoutBackgroundBlur = true
   layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
@@ -81,17 +85,18 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
   showZenMode = true
 
 [list]
-  showHero = false
+  showHero = true
+  heroStyle = "background"
   layoutBackgroundBlur = true
   layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
-  showSummary = true
-  showViews = false
+  showSummary = false
+  showViews = true
   showLikes = false
   showTableOfContents = false
   showCards = true
   orderByWeight = false
-  groupByYear = true
+  groupByYear = false
   cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
@@ -101,28 +106,37 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
 
 [taxonomy]
   showTermCount = true
-  showHero = false
+  showHero = true
+  heroStyle = "background"
   layoutBackgroundBlur = true
   layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
-  showViews = false
+  showViews = true
   showLikes = false
   showTableOfContents = false
   cardView = true
 
 [term]
-  showHero = false
+  showHero = true
+  heroStyle = "background"
   layoutBackgroundBlur = true
   layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
-  showViews = false
+  showViews = true
   showLikes = false
   showTableOfContents = false
-  groupByYear = true
+  groupByYear = false
   cardView = true
   cardViewScreenWidth = false
 
 [firebase]
+  apiKey = ""
+  authDomain = ""
+  projectId = ""
+  storageBucket = ""
+  messagingSenderId = ""
+  appId = ""
+  measurementId = ""
 [fathomAnalytics]
 [umamiAnalytics]
 [selineAnalytics]

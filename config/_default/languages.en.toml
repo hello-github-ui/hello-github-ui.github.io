@@ -9,7 +9,7 @@ title = "QiYue's Blog"
   isoCode = "en"
   rtl = false
   dateFormat = "January 2, 2006"
-  # logo = "img/logo.png"
+  logo = "img/logo.png"
   description = "QiYue's Blog — notes and essays"
   copyright = "&copy; { year } QiYue's Blog"
 
