@@ -5,4 +5,6 @@ draft: false
 description: MySQL触发器
 tags:
   - MySQL
+categories:
+  - 记录
 ---
