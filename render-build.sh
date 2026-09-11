@@ -46,7 +46,7 @@ rm -rf public
 
 hugo \
   --gc \
-  --minify \
+  # --minify \
   --baseURL "${HUGO_BASEURL}" \
   --cacheDir "${HOME}/.cache/hugo"
 
