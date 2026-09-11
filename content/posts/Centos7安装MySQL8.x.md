@@ -1,14 +1,18 @@
 ---
 title: Centos7安装MySQL8.x
-date: 2026-09-10
+date: 2021-11-16T14:41:43+08:00
 draft: false
 description: Centos7安装MySQL8.x
 featureImage: "configuration-system.png"
 tags:
+  - MySQL
   - Linux
+  - Centos
 categories:
-  - 记录
+  - 笔记
+  - IT
 ---
+
 # **上传安装包到Linux**
 
 下载 MySQL server 包：++[链接](https://pan.baidu.com/s/14y8C5SdgiNtjNlvE9Kow7A)++ 提取码: `4aqx`

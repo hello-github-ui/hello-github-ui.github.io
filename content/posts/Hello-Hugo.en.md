@@ -1,12 +1,12 @@
 ---
-title: "Hello，World"
+title: "Hello，Hugo"
 date: 2026-09-09T14:52:00+08:00
 draft: false
 description: "This is the first post, intended to verify that the site can be built and published."
 tags:
-  - 随笔
+  - 心情
 categories:
-  - 博客
+  - 生活
 ---
 
 这是用 **Hugo + Pages CMS + GitHub Pages** 发布的第一篇文章。

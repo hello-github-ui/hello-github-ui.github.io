@@ -1,13 +1,13 @@
 ---
-title: "你好，世界"
+title: "你好，Hugo"
 date: 2026-09-09T14:52:00+08:00
 draft: false
-description: "这是第一篇文章，用来验证站点能编译、能发布。"
+description: "这是第一篇文章，用来验证Hugo + Pages CMS + GitHub Pages站点能编译、能发布。"
 featureImage: "featured.png"
 tags:
-  - 随笔
+  - 心情
 categories:
-  - 博客
+  - 生活
 ---
 
 这是用 **Hugo + Pages CMS + GitHub Pages** 发布的第一篇文章。

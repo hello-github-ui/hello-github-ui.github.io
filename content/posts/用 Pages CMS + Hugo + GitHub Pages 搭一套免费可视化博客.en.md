@@ -8,13 +8,13 @@ tags:
   - Hugo
   - GitHub Pages
   - GitHub
-  - 笔记
   - WordPress
   - CMS
-  - 博客
 categories:
   - 教程
+  - 笔记
 ---
+
 ## 1. 前置准备
 
 需要：

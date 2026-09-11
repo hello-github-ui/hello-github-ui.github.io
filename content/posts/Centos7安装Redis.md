@@ -1,6 +1,6 @@
 ---
 title: Centos7安装Redis
-date: 2026-09-10
+date: 2022-01-10T16:25:48+08:00
 draft: false
 description: Centos7安装Redis
 featureImage: "installation.png"
@@ -9,8 +9,10 @@ tags:
   - Linux
   - Centos
 categories:
-  - 记录
+  - 笔记
+  - IT
 ---
+
 # **1. 下载**
 
 从官网下载redis压缩包到本地

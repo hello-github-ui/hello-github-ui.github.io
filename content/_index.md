@@ -2,7 +2,7 @@
 title: "QiYue's Blog"
 description: "技术随笔与个人笔记"
 heroCaption: "QiYue's Blog"
-heroLead: "记录技术探索之路，分享实践中的经验与思考。涵盖 Linux、数据库、开发工具等主题。"
+heroLead: "记录点滴，分享实践中的经验与思考。涵盖 编程、生活、杂记 等主题。"
 heroImage: "featured.png"
 heroButtons:
   - label: "浏览文章"
@@ -17,5 +17,5 @@ heroButtons:
 ---
 
 {{< lead >}}
-在这里，你可以找到关于 Linux 运维、数据库管理、开发工具使用等方面的实用指南和经验分享。
+在这里，你可以找到关于 `编程`、`生活`、`杂记` 等方面的实用指南和经验分享。
 {{< /lead >}}

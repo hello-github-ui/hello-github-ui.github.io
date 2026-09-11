@@ -1,6 +1,6 @@
 ---
 title: Linux Mint20 使用体验
-date: 2026-09-10
+date: 2021-12-04T11:10:18+08:00
 draft: false
 description: 上周我把我的华硕笔记本重装成Linux Mint20系统了，以后我就不打算使用windows了，太流氓了。
   至于系统怎么装的，就不细说了，因为坑之前装过windows的电脑装想直接装Linux系统坑还是太多了，其因有以下几点：其一，windows系统下基本是
@@ -10,9 +10,11 @@ featureImage: "series.png"
 tags:
   - Linux
 categories:
-  - 记录
+  - 笔记
+  - IT
 ---
-++[https://pic.imgdb.cn/item/61ab5b682ab3f51d9166eeb3.jpg](https://pic.imgdb.cn/item/61ab5b682ab3f51d9166eeb3.jpg)++
+
+[https://pic.imgdb.cn/item/61ab5b682ab3f51d9166eeb3.jpg](https://pic.imgdb.cn/item/61ab5b682ab3f51d9166eeb3.jpg)
 
 # **MySQL8 的安装**
 
