@@ -63,7 +63,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --baseURL "https://hello-github-ui-github-io.onrender.com/" \
             --cacheDir "${{ runner.temp }}/.cache/hugo"
 
       - name: Upload artifact
