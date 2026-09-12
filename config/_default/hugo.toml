@@ -1,5 +1,5 @@
 theme = "blowfish"
-baseURL = "https://hello-github-ui.github.io/"
+baseURL = "https://hello-github-ui-github-io.onrender.com/"
 
 defaultContentLanguage = "zh-cn"
 defaultContentLanguageInSubdir = false

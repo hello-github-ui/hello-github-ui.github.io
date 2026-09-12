@@ -59,8 +59,3 @@
   name = "归档"
   pageRef = "archives"
   weight = 40
-
-[[footer]]
-  name = "搜索"
-  pageRef = "search"
-  weight = 50
