@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>menu diag</title>
+<style>
+  html,body{margin:0;padding:0;background:#333}
+  #f{width:390px;height:844px;border:0;display:block}
+</style>
+</head>
+<body>
+<iframe id="f" src="/" title="blog"></iframe>
+<script>
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      var f = document.getElementById("f");
+      var d = f.contentDocument;
+      var t = d.getElementById("mobile-menu-toggle");
+      if (t) { t.checked = true; t.dispatchEvent(new Event("change", {bubbles: true})); }
+      setTimeout(function () {
+        var dd = d.getElementById("mobile-menu-dialog");
+        if (dd) {
+          var cs = getComputedStyle(dd);
+          document.title = "DIAG maxH=" + cs.maxHeight + " oy=" + cs.overflowY +
+            " sH=" + dd.scrollHeight + " cH=" + dd.clientHeight +
+            " scr=" + (dd.scrollHeight > dd.clientHeight);
+        } else {
+          document.title = "DIAG no-dialog";
+        }
+      }, 1500);
+    }, 2500);
+  });
+</script>
+</body>
+</html>

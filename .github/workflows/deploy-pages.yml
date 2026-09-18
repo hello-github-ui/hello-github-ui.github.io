@@ -1,0 +1,40 @@
+name: Deploy Pages
+
+# 此 workflow 随部署产物注入 hello-github-ui.github.io 仓库 main 分支。
+# Pages 源配置为 "GitHub Actions" 时，push 到 main 会触发本 workflow，
+# 将仓库根目录内容直接发布为站点（产物已在 blog-source 仓库构建完成）。
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Strip git metadata
+        run: rm -rf .git
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
